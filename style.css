@@ -1,0 +1,280 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Poppins,sans-serif;
+    color:#1f2937;
+}
+
+/* container */
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:auto;
+}
+
+.center{text-align:center;}
+
+/* HERO */
+.hero{
+    background:#e6f4ec;
+    padding:80px 0;
+}
+
+.hero-content{
+    display:flex;
+    align-items:center;
+    gap:40px;
+}
+
+.hero-text h1{
+    font-size:42px;
+    margin:20px 0;
+}
+
+.badge{
+    background:#c7f0d8;
+    padding:6px 12px;
+    border-radius:20px;
+}
+
+.hero-img img{
+    width:100%;
+    border-radius:15px;
+}
+
+/* BUTTON */
+
+/* GLOBAL BUTTON STYLE */
+.btn{
+    padding:12px 22px;
+    border-radius:10px;
+    text-decoration:none;
+    display:inline-block;
+    margin-right:10px;
+
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:0.5px;
+
+    background:#16a34a;
+    color:white;
+    border:none;
+
+    cursor:pointer;
+
+    /* SAME ANIMATION EVERYWHERE */
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+    box-shadow: 0 6px 15px rgba(22,163,74,0.3);
+}
+/* HOVER */
+.btn:hover{
+    background:#15803d;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(22,163,74,0.5);
+}
+
+/* CLICK */
+.btn:active{
+    transform: scale(0.96);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+/* RIPPLE */
+.btn::after{
+    content:"";
+    position:absolute;
+    width:0;
+    height:0;
+    border-radius:50%;
+    background:rgba(255,255,255,0.4);
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    transition:0.4s;
+}
+
+.btn:active::after{
+    width:200px;
+    height:200px;
+    opacity:0;
+}
+
+
+/* SECTIONS */
+section{
+    padding:70px 0;
+}
+
+/* CARDS */
+.cards{
+    display:flex;
+    gap:20px;
+    margin-top:30px;
+}
+
+.card{
+    flex:1;
+    background:#f9fafb;
+    padding:20px;
+    border-radius:12px;
+    text-align:center;
+}
+
+/* STEPS */
+.step-line{
+    display:flex;
+    justify-content:space-between;
+    margin-top:40px;
+}
+
+.circle{
+    background:#16a34a;
+    color:white;
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    line-height:50px;
+    margin:auto;
+}
+
+/* IMPACT */
+.impact{
+    background:linear-gradient(135deg,#16a34a,#059669);
+    color:white;
+}
+
+.impact-cards{
+    display:flex;
+    gap:20px;
+    margin-top:30px;
+}
+
+.impact-card{
+    flex:1;
+    background:rgba(255,255,255,0.2);
+    padding:20px;
+    border-radius:10px;
+}
+
+/* REWARDS */
+.points{
+    display:inline-block;
+    background:#dcfce7;
+    padding:5px 10px;
+    border-radius:20px;
+    margin-bottom:10px;
+}
+
+.partners{
+    margin-top:40px;
+    background:#e6f4ec;
+    padding:30px;
+    border-radius:15px;
+}
+
+.partner-list{
+    display:flex;
+    justify-content:space-between;
+    margin-top:20px;
+}
+
+.partner{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+}
+
+/* CTA */
+.cta{
+    background:linear-gradient(135deg,#16a34a,#0d9488);
+    color:white;
+    text-align:center;
+}
+/* FOOTER */
+.footer{
+    background:#0f172a;
+    color:#e5e7eb;
+    padding:60px 0 20px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:40px;
+}
+
+.footer h3,
+.footer h4{
+    color:white;
+    margin-bottom:15px;
+}
+
+.footer p{
+    color:#9ca3af;
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+.footer ul{
+    list-style:none;
+}
+
+.footer ul li{
+    margin-bottom:10px;
+    color:#9ca3af;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.footer ul li:hover{
+    color:#22c55e;
+}
+
+.contact p{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+/* FOOTER BOTTOM */
+.footer-bottom{
+    border-top:1px solid #1f2937;
+    margin-top:40px;
+    padding-top:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.socials span{
+    margin-left:10px;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.socials span:hover{
+    color:#22c55e;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .footer-grid{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+        gap:10px;
+    }
+}
+
+
