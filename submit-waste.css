@@ -1,0 +1,221 @@
+
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#f5f7f6;
+}
+
+/* NAV RIGHT */
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+/* NOTIFICATION ICON */
+.notification{
+    position:relative;
+    cursor:pointer;
+    font-size:20px;
+}
+
+/* RED DOT */
+.badge{
+    position:absolute;
+    top:0;
+    right:0;
+    width:8px;
+    height:8px;
+    background:red;
+    border-radius:50%;
+}
+
+/* DROPDOWN */
+.dropdown{
+    position:absolute;
+    top:30px;
+    right:0;
+    width:220px;
+    background:white;
+    border-radius:10px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.15);
+    padding:10px;
+    display:none;
+    z-index:100;
+}
+
+.dropdown ul{
+    list-style:none;
+    padding:0;
+    margin:10px 0 0;
+}
+
+.dropdown li{
+    padding:8px;
+    border-radius:6px;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.dropdown li:hover{
+    background:#f3f4f6;
+}
+/* NAVBAR */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 40px;
+    background:white;
+    border-bottom:1px solid #ddd;
+}
+
+.navbar a{
+    margin-left:20px;
+    text-decoration:none;
+    color:#555;
+}
+
+.navbar .active{
+    color:#16a34a;
+    font-weight:bold;
+}
+
+.logo{
+    font-weight:bold;
+}
+
+/* CONTAINER */
+.container{
+    width:80%;
+    margin:auto;
+    padding:30px 0;
+}
+
+.subtitle{
+    color:#666;
+    margin-bottom:20px;
+}
+
+/* ECO BOX */
+.eco-box{
+    background:#e6f4ea;
+    border:1px solid #16a34a;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:30px;
+}
+
+.points-grid{
+    display:grid;
+    grid-template-columns: repeat(6,1fr);
+    gap:10px;
+    margin-top:15px;
+}
+
+.points-grid div{
+    background:white;
+    padding:10px;
+    border-radius:8px;
+    text-align:center;
+    font-size:14px;
+}
+
+.points-grid span{
+    color:#16a34a;
+    font-weight:bold;
+}
+
+/* CARD */
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* UPLOAD */
+.upload-box{
+    border:2px dashed #ccc;
+    padding:30px;
+    text-align:center;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+/* FORM */
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-bottom:15px;
+}
+
+input, select, textarea{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    margin-top:10px;
+}
+
+textarea{
+    min-height:80px;
+}
+
+/* BUTTON */
+.btn{
+    width:100%;
+    background:#16a34a;
+    color:white;
+    padding:15px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#15803d;
+    transform:translateY(-2px);
+}
+/* NAV LINKS */
+.nav-right a{
+    position: relative;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.nav-right a:hover{
+    color:#16a34a;
+}
+
+/* ACTIVE LINK */
+.nav-right a.active{
+    color:#16a34a;
+}
+
+/* UNDERLINE ANIMATION */
+.nav-right a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    width:0%;
+    height:2px;
+    background:#16a34a;
+    transition:0.3s ease;
+}
+
+/* HOVER UNDERLINE */
+.nav-right a:hover::after{
+    width:100%;
+}
+
+/* ACTIVE UNDERLINE */
+.nav-right a.active::after{
+    width:100%;
+}
