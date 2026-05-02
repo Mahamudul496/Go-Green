@@ -1,48 +1,48 @@
-
-body{
-    font-family:Poppins;
-    background:#e6f4ec;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
+body {
+    font-family: Poppins;
+    background: #e6f4ec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.form-box{
-    background:white;
-    padding:30px;
-    border-radius:10px;
-    width:300px;
-    display:flex;
-    flex-direction:column;
-    gap:15px;
+.form-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-input{
-    padding:10px;
-    border:1px solid #ccc;
-    border-radius:5px;
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-button{
-    background:#16a34a;
-    color:white;
-    padding:10px;
-    border:none;
-    border-radius:5px;
+button {
+    background: #16a34a;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
 }
+
 /* BUTTON BASE */
-button{
-    width:100%;
-    margin-top:20px;
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
+button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 
-    background:#16a34a;
-    color:white;
-    font-weight:600;
+    background: #16a34a;
+    color: white;
+    font-weight: 600;
 
     transition: all 0.3s ease;
     position: relative;
@@ -50,22 +50,34 @@ button{
 }
 
 /* HOVER EFFECT */
-button:hover{
+button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    background:#15803d;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: #15803d;
 }
 
 /* CLICK EFFECT */
-button:active{
+button:active {
     transform: scale(0.95);
-    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 
 
-button:active::after{
-    width:200px;
-    height:200px;
-    opacity:0;
+button:active::after {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+}
+
+/* Simple Error Box */
+.error-box {
+    background: #ffdddd;
+    border: 1px solid #ffaaaa;
+    color: #cc0000;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    text-align: center;
+    font-weight: bold;
 }

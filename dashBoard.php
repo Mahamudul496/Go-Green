@@ -21,9 +21,9 @@
         <ul class="menu">
             <li class="active">Dashboard</li>
 
-<li>
-    <a href="SubmitWaste.html" class="nav-link">Submit Waste</a>
-</li>
+            <li>
+                <a href="SubmitWaste.html" class="nav-link">Submit Waste</a>
+            </li>
             <li>Rewards</li>
             <li>Impact</li>
             <li>Profile</li>
@@ -34,7 +34,6 @@
     </nav>
 
     <div class="container">
-
         <h2>GoGreen | User Dashboard</h2>
         <p class="sub">Welcome back, Midul! Track your environmental impact and earn rewards</p>
 
@@ -70,12 +69,12 @@
         <!-- Quick Actions -->
         <div class="grid">
             <a href="SubmitWaste.html" class="action-link">
-    <div class="card">
-        <div class="icon blue">⬆️</div>
-        <h4>Submit Waste</h4>
-        <p>Upload waste for recycling</p>
-    </div>
-</a>
+                <div class="card">
+                    <div class="icon blue">⬆️</div>
+                    <h4>Submit Waste</h4>
+                    <p>Upload waste for recycling</p>
+                </div>
+            </a>
 
             <div class="card">
                 <div class="icon green">🚚</div>
@@ -130,7 +129,6 @@
             </div>
 
         </div>
-
     </div>
 
 </body>
