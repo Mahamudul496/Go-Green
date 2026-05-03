@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoGreen</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <span class="badge">🌱 Eco-Friendly Platform</span>
+                <h1>Recycle Waste. Earn Green Rewards. Save the Planet.</h1>
+                <p>
+                    GoGreen is a smart waste collection and reward platform that helps you recycle responsibly
+                    and earn eco-friendly rewards like tree saplings and gift vouchers.
+                </p>
+                <div class="buttons">
+                    <a href="user-login.php" class="btn">Get Started</a>
+                    <a href="#about" class="btn">Learn More</a>
+                </div>
+            </div>
+
+            <div class="hero-img">
+                <img src="tree.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="container center">
+            <h2>What is GoGreen?</h2>
+            <p>
+                GoGreen is a web-based waste management system
+                that allows users to submit recyclable waste,
+                request pickup from their location, and earn
+                eco-points. These points can be redeemed for
+                tree plantations or eco-friendly gift vouchers.
+                Our goal is to promote sustainable behavior and
+                reduce environmental pollution in Bangladesh.
+            </p>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features">
+        <div class="container" id="useGogreen">
+            <h2 class="center">Why Should You Use GoGreen?</h2>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="icon">🌍</div>
+                    <h3>Save the Environment</h3>
+                    <p>Recycle waste and reduce pollution.</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon">🌳</div>
+                    <h3>Earn Tree Rewards</h3>
+                    <p>Get tree saplings or sponsor plantations.</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon">🎁</div>
+                    <h3>Eco-Friendly Vouchers</h3>
+                    <p>Redeem points for green products.</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon">🚚</div>
+                    <h3>Easy Pickup Service</h3>
+                    <p>Request waste pickup from your home.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="steps">
+        <div class="container center">
+            <h2>How It Works</h2>
+
+            <div class="step-line">
+                <div class="step">
+                    <div class="circle">1</div>
+                    <h4>Register & Login</h4>
+                    <p>Create your GoGreen account.</p>
+                </div>
+
+                <div class="step">
+                    <div class="circle">2</div>
+                    <h4>Submit Waste</h4>
+                    <p>Select waste type and upload details.</p>
+                </div>
+
+                <div class="step">
+                    <div class="circle">3</div>
+                    <h4>Request Pickup</h4>
+                    <p>Choose pickup time & location.</p>
+                </div>
+
+                <div class="step">
+                    <div class="circle">4</div>
+                    <h4>Earn Points</h4>
+                    <p>Points calculated after verification.</p>
+                </div>
+
+                <div class="step">
+                    <div class="circle">5</div>
+                    <h4>Redeem Rewards</h4>
+                    <p>Get trees or eco-friendly vouchers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT -->
+    <section class="impact">
+        <div class="container center">
+            <h2>Our Environmental Impact</h2>
+            <p>Together, we're making a real difference</p>
+
+            <div class="impact-cards">
+                <div class="impact-card">
+                    <h3>1,200+ kg</h3>
+                    <p>Total Waste Recycled</p>
+                </div>
+
+                <div class="impact-card">
+                    <h3>350 Trees</h3>
+                    <p>Trees Planted</p>
+                </div>
+
+                <div class="impact-card">
+                    <h3>2.5 Tons</h3>
+                    <p>CO₂ Reduced</p>
+                </div>
+
+                <div class="impact-card">
+                    <h3>500+ Users</h3>
+                    <p>Active Users</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REWARDS -->
+    <section class="rewards">
+        <div class="container">
+            <h2 class="center">Green Rewards & Partners</h2>
+
+            <div class="cards">
+                <div class="card">
+                    <span class="points">50 points</span>
+                    <h3>Tree Saplings</h3>
+                    <p>Receive tree saplings to plant.</p>
+                </div>
+
+                <div class="card">
+                    <span class="points">100 points</span>
+                    <h3>Tree Plantation</h3>
+                    <p>Sponsor a tree plantation.</p>
+                </div>
+
+                <div class="card">
+                    <span class="points">75 points</span>
+                    <h3>Gift Vouchers</h3>
+                    <p>Redeem eco-friendly vouchers.</p>
+                </div>
+            </div>
+
+            <div class="partners">
+                <h3 class="center">Our Eco-Partners</h3>
+
+                <div class="partner-list">
+                    <div class="partner">Green Bangladesh</div>
+                    <div class="partner">EcoLife Foundation</div>
+                    <div class="partner">TreeCare BD</div>
+                    <div class="partner">Sustainable Solutions</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container center">
+            <h2>Join GoGreen today and become a part of the movement for a cleaner and greener Bangladesh.</h2>
+            <p>Start recycling, earning rewards, and making a real environmental impact.</p>
+
+            <a href="user-signup.html" class="btn">Sign Up Now</a>
+            <a href="user-login.html" class="btn">Login</a>
+        </div>
+    </section>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-grid">
+
+            <!-- LEFT SIDE -->
+            <div class="footer-about">
+                <h3 class="logo">🌱 GoGreen</h3>
+                <p>
+                    Making waste management sustainable and rewarding for everyone in Bangladesh.
+                </p>
+
+                <div class="contact">
+                    <p>📧 info@gogreen.bd</p>
+                    <p>📞 +880 1234-567890</p>
+                    <p>📍 Dhaka, Bangladesh</p>
+                </div>
+            </div>
+
+            <!-- COMPANY -->
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li>About GoGreen</li>
+                    <li>Contact Us</li>
+                    <li>Careers</li>
+                    <li>Blog</li>
+                </ul>
+            </div>
+
+            <!-- LEGAL -->
+            <div>
+                <h4>Legal</h4>
+                <ul>
+                    <li>Privacy Policy</li>
+                    <li>Terms & Conditions</li>
+                    <li>Cookie Policy</li>
+                    <li>GDPR</li>
+                </ul>
+            </div>
+
+            <!-- SUPPORT -->
+            <div>
+                <h4>Support</h4>
+                <ul>
+                    <li>Help Center</li>
+                    <li>FAQs</li>
+                    <li>How It Works</li>
+                    <li>Partner With Us</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- BOTTOM -->
+        <div class="footer-bottom">
+            <p>© 2026 GoGreen. All rights reserved. Building a sustainable future together.</p>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
