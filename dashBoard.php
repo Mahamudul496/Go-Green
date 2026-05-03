@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -29,13 +32,27 @@
             <li>Profile</li>
 
             <li class="icon-item">🔔 <span class="dot"></span></li>
-            </li> <a href="login.html" class="nav-link">Logout</a></li>
+
+            <li>
+                <a href="login.html" class="nav-link">Logout</a>
+            </li>
         </ul>
     </nav>
 
     <div class="container">
-        <h2>GoGreen | User Dashboard</h2>
-        <p class="sub">Welcome back, Midul! Track your environmental impact and earn rewards</p>
+
+        <!-- ✅ Points left, title right -->
+        <div class="title-row">
+
+
+            <div class="dashboard-title-right">
+                <h2>GoGreen | User Dashboard</h2>
+                <p class="sub">Welcome back, Midul! Track your environmental impact and earn rewards</p>
+            </div>
+            <div class="points">
+                🌟 <?php echo isset($_SESSION['points']) ? $_SESSION['points'] : 0; ?>
+            </div>
+        </div>
 
         <!-- Stats -->
         <div class="grid">
@@ -48,7 +65,7 @@
             <div class="card">
                 <div class="icon green">🌿</div>
                 <p>Eco-Points Earned</p>
-                <h3>0</h3>
+                <h3><?php echo isset($_SESSION['points']) ? $_SESSION['points'] : 0; ?></h3>
             </div>
 
             <div class="card">
