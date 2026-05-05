@@ -115,17 +115,17 @@ session_start();
         <!-- Bottom -->
         <div class="bottom">
 
-            <div class="bottom-card">
+            <div class="card">
                 <div class="bottom-row">
                     <div>
-                        <h4>My Submissions</h4>
+                        <h4><a href="my-submissions.php" style="text-decoration: none;color: inherit;">My Submissions</a></h4>
                         <p>View waste history</p>
                     </div>
                     <span class="bicon green">♻️</span>
                 </div>
             </div>
 
-            <div class="bottom-card">
+            <div class="card">
                 <div class="bottom-row">
                     <div>
                         <h4>Notifications</h4>
@@ -135,7 +135,7 @@ session_start();
                 </div>
             </div>
 
-            <div class="bottom-card">
+            <div class="card">
                 <div class="bottom-row">
                     <div>
                         <h4>Profile Settings</h4>
