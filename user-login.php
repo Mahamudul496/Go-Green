@@ -13,7 +13,7 @@
             <h2>User Login</h2>
             <input type="email" name="email" placeholder="Email">
             <input type="password" name="password" placeholder="Password">
-            <button type="submit" name="login">Login</button>
+            <button type="submit" name="submit">Login</button>
         </div>
     </form>
 
@@ -41,7 +41,8 @@ if (isset($_POST['submit'])) {
         if ($user['bonus_given'] == 0) {
             $newPoints = $user['points'] + 25;
 
-            mysqli_query($conn, "UPDATE users SET points='$newPoints', bonus_given=1 WHERE id=" . $user['id']);
+            $sqlPoints = "UPDATE users SET points='$newPoints', bonus_given=1 WHERE id=" . $user['id'];
+            mysqli_query($conn, $sqlPoints);
 
             $user['points'] = $newPoints;
         }
@@ -56,4 +57,5 @@ if (isset($_POST['submit'])) {
         echo "Invalid email or password.";
     }
 }
+
 ?>
