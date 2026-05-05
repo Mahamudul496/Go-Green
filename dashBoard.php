@@ -25,7 +25,7 @@ session_start();
             <li class="active">Dashboard</li>
 
             <li>
-                <a href="SubmitWaste.html" class="nav-link">Submit Waste</a>
+                <a href="SubmitWaste.php" class="nav-link">Submit Waste</a>
             </li>
             <li>Rewards</li>
             <li>Impact</li>
@@ -34,7 +34,7 @@ session_start();
             <li class="icon-item">🔔 <span class="dot"></span></li>
 
             <li>
-                <a href="login.html" class="nav-link">Logout</a>
+                <a href="user-login.php" class="nav-link">Logout</a>
             </li>
         </ul>
     </nav>
@@ -85,7 +85,7 @@ session_start();
 
         <!-- Quick Actions -->
         <div class="grid">
-            <a href="SubmitWaste.html" class="action-link">
+            <a href="SubmitWaste.php" class="action-link">
                 <div class="card">
                     <div class="icon blue">⬆️</div>
                     <h4>Submit Waste</h4>
