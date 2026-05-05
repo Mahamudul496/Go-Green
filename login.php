@@ -16,7 +16,7 @@
 
         <div class="role-cards">
             <a href="user-login.php" class="role-card">👤 Login as User</a>
-            <a href="staff-login.html" class="role-card">🚚 Login as Pickup Staff</a>
+            <a href="admin-login.php" class="role-card">🚚 Login as Admin</a>
         </div>
 
         <p>Don't have an account? <a href="signup.html">Sign Up</a></p>

@@ -34,7 +34,7 @@ session_start();
             <li class="icon-item">🔔 <span class="dot"></span></li>
 
             <li>
-                <a href="user-login.php" class="nav-link">Logout</a>
+                <a href="login.php" class="nav-link">Logout</a>
             </li>
         </ul>
     </nav>
