@@ -11,7 +11,7 @@
 <body>
 
     <div class="auth-container">
-        <h1>Login to GoGreen</h1>
+        <h1><a href="index.php" style="color: #2d6a4f;">GoGreen</a></h1>
         <p>Select your role</p>
 
         <div class="role-cards">
