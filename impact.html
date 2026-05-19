@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoGreen - Environmental Impact</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        /* =========================
+   GLOBAL
+========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            color: #111827;
+        }
+
+        /* =========================
+   NAVBAR
+========================= */
+
+        .navbar {
+            width: 100%;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 14px 0;
+        }
+
+        .nav-container {
+            width: 1200px;
+            margin: auto;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* 🔥 WHITE LOGO */
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+
+            background: white;
+
+            border: 2px solid #16a34a;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: #16a34a;
+            font-size: 18px;
+        }
+
+        .logo h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .logo p {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #4b5563;
+            font-size: 14px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .menu a:hover {
+            color: #16a34a;
+        }
+
+        .menu .active {
+            color: #16a34a;
+        }
+
+        .bell {
+            position: relative;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: red;
+
+            position: absolute;
+            top: -2px;
+            right: -2px;
+        }
+
+        /* =========================
+   CONTAINER
+========================= */
+
+        .container {
+            width: 1200px;
+            margin: 28px auto 40px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            text-decoration: none;
+            color: #374151;
+            font-size: 15px;
+
+            margin-bottom: 28px;
+        }
+
+        .back-btn:hover {
+            color: #16a34a;
+        }
+
+        .title {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            font-size: 16px;
+            margin-bottom: 34px;
+        }
+
+        /* =========================
+   TOP CARDS
+========================= */
+
+        .top-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 24px;
+
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: white;
+            font-size: 18px;
+
+            margin-bottom: 18px;
+        }
+
+        .blue {
+            background: linear-gradient(135deg, #0ea5e9, #2563eb);
+        }
+
+        .green {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+        }
+
+        .purple {
+            background: linear-gradient(135deg, #9333ea, #ec4899);
+        }
+
+        .orange {
+            background: linear-gradient(135deg, #f97316, #ef4444);
+        }
+
+        .card-title {
+            color: #4b5563;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .big {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .small-green {
+            color: #16a34a;
+            font-size: 14px;
+        }
+
+        /* =========================
+   CHART GRID
+========================= */
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+
+            margin-bottom: 38px;
+        }
+
+        .chart-card {
+            background: white;
+            border-radius: 18px;
+            padding: 24px;
+
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .chart-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        /* =========================
+   PIE CHART
+========================= */
+
+        .pie-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px 0;
+        }
+
+        .pie {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+
+            background:
+                conic-gradient(#3b82f6 0% 35%,
+                    #ef4444 35% 45%,
+                    #f59e0b 45% 60%,
+                    #8b5cf6 60% 75%,
+                    #10b981 75% 100%);
+
+            position: relative;
+
+            cursor: pointer;
+        }
+
+        .tooltip {
+            position: absolute;
+
+            top: -45px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            background: #111827;
+            color: white;
+
+            padding: 8px 14px;
+            border-radius: 8px;
+
+            font-size: 13px;
+
+            opacity: 0;
+            transition: .3s;
+        }
+
+        .pie:hover .tooltip {
+            opacity: 1;
+        }
+
+        .labels {
+            margin-top: 20px;
+
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .labels span {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* =========================
+   GRAPH
+========================= */
+
+        .graph {
+            height: 280px;
+
+            border-left: 2px solid #9ca3af;
+            border-bottom: 2px solid #9ca3af;
+
+            position: relative;
+
+            margin: 20px;
+        }
+
+        .grid-line {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            border-top: 1px dashed #d1d5db;
+        }
+
+        .line1 {
+            top: 50px;
+        }
+
+        .line2 {
+            top: 100px;
+        }
+
+        .line3 {
+            top: 150px;
+        }
+
+        .line4 {
+            top: 200px;
+        }
+
+        .graph-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .months {
+            display: flex;
+            justify-content: space-between;
+
+            margin-top: 10px;
+            padding: 0 10px;
+
+            color: #6b7280;
+        }
+
+        /* LEGEND */
+
+        .legend {
+            margin-top: 18px;
+
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+
+            font-size: 14px;
+        }
+
+        .green-box,
+        .blue-box {
+            width: 14px;
+            height: 14px;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+        .green-box {
+            background: #10b981;
+        }
+
+        .blue-box {
+            background: #2563eb;
+        }
+
+        /* =========================
+   IMPACT
+========================= */
+
+        .impact-box {
+            background: white;
+            border-radius: 18px;
+            padding: 34px;
+
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+            margin-bottom: 34px;
+        }
+
+        .impact-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 36px;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .impact-item {
+            text-align: center;
+        }
+
+        .circle {
+            width: 82px;
+            height: 82px;
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin: auto auto 18px;
+
+            font-size: 34px;
+        }
+
+        .c1 {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .c2 {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .c3 {
+            background: #f3e8ff;
+            color: #9333ea;
+        }
+
+        .impact-item h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .impact-item p {
+            font-size: 14px;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        /* =========================
+   ACHIEVEMENT
+========================= */
+
+        .achievement {
+            background: #eaf7ef;
+            border-radius: 18px;
+            padding: 34px;
+        }
+
+        .achievement h2 {
+            font-size: 18px;
+            margin-bottom: 28px;
+        }
+
+        .achievement-card {
+            background: white;
+            width: 380px;
+
+            border-radius: 14px;
+            padding: 18px;
+
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .star {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: #fef3c7;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 26px;
+        }
+
+        .achievement-card h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .achievement-card p {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* =========================
+   RESPONSIVE
+========================= */
+
+        @media(max-width:1250px) {
+
+            .container,
+            .nav-container {
+                width: 95%;
+            }
+        }
+
+        @media(max-width:1000px) {
+
+            .top-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width:700px) {
+
+            .top-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .achievement-card {
+                width: 100%;
+            }
+
+            .menu {
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+        }
+
+        /* =========================
+   NEW NAVBAR
+========================= */
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 15px 60px;
+
+            background: white;
+
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-box {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 10px;
+
+            background: white;
+
+            border: 2px solid #16a34a;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .menu {
+            list-style: none;
+
+            display: flex;
+            align-items: center;
+
+            gap: 26px;
+        }
+
+        .menu li {
+            font-size: 14px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 600;
+
+            transition: .3s;
+        }
+
+        .nav-link:hover {
+            color: #16a34a;
+        }
+
+        .nav-link.active {
+            color: #16a34a;
+        }
+
+        .icon-item {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: red;
+
+            position: absolute;
+
+            top: 2px;
+            right: -2px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+     NAVBAR
+========================= -->
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <div class="left">
+
+            <div class="logo-box">🌱</div>
+
+            <div>
+                <div class="logo-text">GoGreen</div>
+                <small>Smart Waste • Green Rewards</small>
+            </div>
+
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <a href="#" class="nav-link">
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link">
+                    Submit Waste
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link">
+                    Rewards
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link active">
+                    Impact
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link">
+                    Profile
+                </a>
+            </li>
+
+            <li class="icon-item">
+                🔔
+                <span class="dot"></span>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link">
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <!-- =========================
+     MAIN
+========================= -->
+
+    <div class="container">
+
+        <a href="#" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back to Dashboard
+        </a>
+
+        <h1 class="title">Environmental Impact</h1>
+
+        <p class="subtitle">
+            Your contribution to a sustainable future
+        </p>
+
+        <!-- TOP CARDS -->
+
+        <div class="top-cards">
+
+            <div class="card">
+
+                <div class="icon-box blue">
+                    <i class="fa-solid fa-recycle"></i>
+                </div>
+
+                <div class="card-title">
+                    Total Waste Recycled
+                </div>
+
+                <div class="big">0 kg</div>
+
+                <div class="small-green">
+                    +12% this month
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon-box green">
+                    <i class="fa-solid fa-tree"></i>
+                </div>
+
+                <div class="card-title">
+                    Trees Planted
+                </div>
+
+                <div class="big">0</div>
+
+                <div class="small-green">
+                    0 trees saved
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon-box purple">
+                    <i class="fa-solid fa-cloud"></i>
+                </div>
+
+                <div class="card-title">
+                    CO₂ Emission Reduced
+                </div>
+
+                <div class="big">0.0 kg</div>
+
+                <div class="small-green">
+                    Equivalent to 50 km drive
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon-box orange">
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                </div>
+
+                <div class="card-title">
+                    Environmental Score
+                </div>
+
+                <div class="big">0</div>
+
+                <div class="small-green">
+                    Excellent contribution!
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CHARTS -->
+
+        <div class="chart-grid">
+
+            <!-- PIE -->
+
+            <div class="chart-card">
+
+                <div class="chart-title">
+                    Waste Type Distribution
+                </div>
+
+                <div class="pie-wrapper">
+
+                    <div class="pie">
+
+                        <div class="tooltip" id="tooltip">
+                            Plastic 35%
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="labels">
+
+                    <span style="color:#3b82f6;">Plastic 35%</span>
+
+                    <span style="color:#10b981;">Paper 25%</span>
+
+                    <span style="color:#8b5cf6;">Glass 15%</span>
+
+                    <span style="color:#f59e0b;">Metal 15%</span>
+
+                    <span style="color:#ef4444;">E-waste 10%</span>
+
+                </div>
+
+            </div>
+
+            <!-- GRAPH -->
+
+            <div class="chart-card">
+
+                <div class="chart-title">
+                    Monthly Contribution
+                </div>
+
+                <div class="graph">
+
+                    <div class="grid-line line1"></div>
+                    <div class="grid-line line2"></div>
+                    <div class="grid-line line3"></div>
+                    <div class="grid-line line4"></div>
+
+                    <svg class="graph-svg" viewBox="0 0 500 220">
+
+                        <!-- GREEN GRAPH -->
+
+                        <polyline fill="none" stroke="#10b981" stroke-width="4" points="
+                    20,170
+                    90,150
+                    160,140
+                    230,120
+                    300,100
+                    370,90
+                    440,70" />
+
+                        <!-- BLUE GRAPH -->
+
+                        <polyline fill="none" stroke="#2563eb" stroke-width="4" points="
+                    20,190
+                    90,175
+                    160,165
+                    230,155
+                    300,145
+                    370,130
+                    440,120" />
+
+                    </svg>
+
+                </div>
+
+                <div class="months">
+
+                    <span>Jan</span>
+                    <span>Feb</span>
+                    <span>Mar</span>
+                    <span>Apr</span>
+                    <span>May</span>
+                    <span>Jun</span>
+                    <span>Jul</span>
+
+                </div>
+
+                <div class="legend">
+
+                    <div>
+                        <span class="green-box"></span>
+                        Waste (kg)
+                    </div>
+
+                    <div>
+                        <span class="blue-box"></span>
+                        CO₂ Saved (kg)
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- IMPACT -->
+
+        <div class="impact-box">
+
+            <div class="impact-title">
+                Your Environmental Impact Breakdown
+            </div>
+
+            <div class="impact-grid">
+
+                <div class="impact-item">
+
+                    <div class="circle c1">
+                        <i class="fa-solid fa-recycle"></i>
+                    </div>
+
+                    <h3>Recycling Impact</h3>
+
+                    <p>
+                        You've recycled 0 kg of waste,
+                        preventing it from ending up in landfills
+                    </p>
+
+                </div>
+
+                <div class="impact-item">
+
+                    <div class="circle c2">
+                        <i class="fa-solid fa-tree"></i>
+                    </div>
+
+                    <h3>Reforestation</h3>
+
+                    <p>
+                        Your 0 planted trees will absorb
+                        ~0 kg of CO₂ per year
+                    </p>
+
+                </div>
+
+                <div class="impact-item">
+
+                    <div class="circle c3">
+                        <i class="fa-solid fa-cloud"></i>
+                    </div>
+
+                    <h3>Carbon Reduction</h3>
+
+                    <p>
+                        Equivalent to taking a car
+                        off the road for 0 days
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ACHIEVEMENT -->
+
+        <div class="achievement">
+
+            <h2>
+                Achievements Unlocked 🏆
+            </h2>
+
+            <div class="achievement-card">
+
+                <div class="star">
+                    ✴
+                </div>
+
+                <div>
+
+                    <h3>First Submission</h3>
+
+                    <p>Started your journey</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        document.querySelectorAll(".menu a").forEach(link => {
+
+            link.addEventListener("click", function (e) {
+
+                e.preventDefault();
+
+            });
+
+        });
+
+        const pie = document.querySelector(".pie");
+        const tooltip = document.getElementById("tooltip");
+
+        pie.addEventListener("mousemove", function (e) {
+
+            const rect = pie.getBoundingClientRect();
+
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            let angle = Math.atan2(y - centerY, x - centerX) * 180 / Math.PI;
+
+            angle = (angle + 360 + 90) % 360;
+
+            if (angle >= 0 && angle < 126) {
+                tooltip.innerHTML = "Plastic 35%";
+            }
+
+            else if (angle >= 126 && angle < 162) {
+                tooltip.innerHTML = "E-waste 10%";
+            }
+
+            else if (angle >= 162 && angle < 216) {
+                tooltip.innerHTML = "Metal 15%";
+            }
+
+            else if (angle >= 216 && angle < 270) {
+                tooltip.innerHTML = "Glass 15%";
+            }
+
+            else {
+                tooltip.innerHTML = "Paper 25%";
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
