@@ -23,7 +23,7 @@
                     and earn eco-friendly rewards like tree saplings and gift vouchers.
                 </p>
                 <div class="buttons">
-                    <a href="user-login.php" class="btn">Get Started</a>
+                    <a href="login.php" class="btn">Get Started</a>
                     <a href="#about" class="btn">Learn More</a>
                 </div>
             </div>

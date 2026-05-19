@@ -11,12 +11,12 @@
 <body>
 
     <div class="auth-container">
-        <h1>Login to GoGreen</h1>
+        <h1><a href="index.php" style="color: #2d6a4f;">GoGreen</a></h1>
         <p>Select your role</p>
 
         <div class="role-cards">
             <a href="user-login.php" class="role-card">👤 Login as User</a>
-            <a href="staff-login.html" class="role-card">🚚 Login as Pickup Staff</a>
+            <a href="admin-login.php" class="role-card">🚚 Login as Admin</a>
         </div>
 
         <p>Don't have an account? <a href="signup.html">Sign Up</a></p>

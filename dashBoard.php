@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -22,20 +25,34 @@
             <li class="active">Dashboard</li>
 
             <li>
-                <a href="SubmitWaste.html" class="nav-link">Submit Waste</a>
+                <a href="SubmitWaste.php" class="nav-link">Submit Waste</a>
             </li>
             <li>Rewards</li>
             <li>Impact</li>
             <li>Profile</li>
 
             <li class="icon-item">🔔 <span class="dot"></span></li>
-            </li> <a href="login.html" class="nav-link">Logout</a></li>
+
+            <li>
+                <a href="login.php" class="nav-link">Logout</a>
+            </li>
         </ul>
     </nav>
 
     <div class="container">
-        <h2>GoGreen | User Dashboard</h2>
-        <p class="sub">Welcome back, Midul! Track your environmental impact and earn rewards</p>
+
+        <!-- ✅ Points left, title right -->
+        <div class="title-row">
+
+
+            <div class="dashboard-title-right">
+                <h2>GoGreen | User Dashboard</h2>
+                <p class="sub">Welcome back, Midul! Track your environmental impact and earn rewards</p>
+            </div>
+            <div class="points">
+                🌟 <?php echo isset($_SESSION['points']) ? $_SESSION['points'] : 0; ?>
+            </div>
+        </div>
 
         <!-- Stats -->
         <div class="grid">
@@ -48,7 +65,7 @@
             <div class="card">
                 <div class="icon green">🌿</div>
                 <p>Eco-Points Earned</p>
-                <h3>0</h3>
+                <h3><?php echo isset($_SESSION['points']) ? $_SESSION['points'] : 0; ?></h3>
             </div>
 
             <div class="card">
@@ -68,7 +85,7 @@
 
         <!-- Quick Actions -->
         <div class="grid">
-            <a href="SubmitWaste.html" class="action-link">
+            <a href="SubmitWaste.php" class="action-link">
                 <div class="card">
                     <div class="icon blue">⬆️</div>
                     <h4>Submit Waste</h4>
@@ -98,17 +115,17 @@
         <!-- Bottom -->
         <div class="bottom">
 
-            <div class="bottom-card">
+            <div class="card">
                 <div class="bottom-row">
                     <div>
-                        <h4>My Submissions</h4>
+                        <h4><a href="my-submissions.php" style="text-decoration: none;color: inherit;">My Submissions</a></h4>
                         <p>View waste history</p>
                     </div>
                     <span class="bicon green">♻️</span>
                 </div>
             </div>
 
-            <div class="bottom-card">
+            <div class="card">
                 <div class="bottom-row">
                     <div>
                         <h4>Notifications</h4>
@@ -118,7 +135,7 @@
                 </div>
             </div>
 
-            <div class="bottom-card">
+            <div class="card">
                 <div class="bottom-row">
                     <div>
                         <h4>Profile Settings</h4>

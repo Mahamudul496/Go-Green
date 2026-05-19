@@ -1,0 +1,174 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f5f7f6;
+}
+
+/* NAVBAR */
+
+.navbar{
+    background:white;
+    padding:18px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #ddd;
+}
+
+.logo-section{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo-icon{
+    font-size:20px;
+}
+
+.logo-text{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#555;
+    font-weight:600;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#16a34a;
+}
+
+.nav-links .active{
+    color:#16a34a;
+    border-bottom:3px solid #16a34a;
+    padding-bottom:5px;
+}
+
+.notification{
+    position:relative;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.notification span{
+    position:absolute;
+    width:9px;
+    height:9px;
+    background:red;
+    border-radius:50%;
+    top:0;
+    right:-2px;
+}
+
+/* PAGE */
+
+.container{
+    padding:50px 80px;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:40px;
+}
+
+.header h1{
+    font-size:45px;
+    margin-bottom:10px;
+}
+
+.header p{
+    color:#555;
+    font-size:18px;
+}
+
+.points-box{
+    background:#16a34a;
+    color:white;
+    padding:20px 40px;
+    border-radius:15px;
+    text-align:center;
+    font-weight:600;
+}
+
+.points-box h2{
+    font-size:40px;
+    margin-top:10px;
+}
+
+/* PRODUCTS */
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.product-card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    transition:.3s;
+}
+
+.product-card:hover{
+    transform:translateY(-8px);
+}
+
+.product-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+
+.product-card h3{
+    padding:20px 20px 10px;
+    font-size:25px;
+}
+
+.product-card p{
+    padding:0 20px;
+    color:#666;
+}
+
+.price{
+    padding:15px 20px;
+    color:#16a34a;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.product-card button{
+    margin:0 20px 20px;
+    width:calc(100% - 40px);
+    padding:14px;
+    border:none;
+    background:#16a34a;
+    color:white;
+    border-radius:10px;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.product-card button:hover{
+    background:#15803d;
+    transform:scale(1.03);
+}
