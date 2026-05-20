@@ -27,8 +27,8 @@ session_start();
             <li>
                 <a href="SubmitWaste.php" class="nav-link">Submit Waste</a>
             </li>
-            <li>Rewards</li>
-            <li>Impact</li>
+            <li><a href="reward.php">Rewards</a></li>
+            <li><a href="impactt.php">Impact</a></li>
             <li>Profile</li>
 
             <li class="icon-item">🔔 <span class="dot"></span></li>

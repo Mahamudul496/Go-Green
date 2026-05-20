@@ -23,15 +23,15 @@
     </div>
 
     <div class="nav-links">
-        <a href="dashBoard.html" class="nav-link">Dashboard</a>
-        <a href="SubmitWaste.html" class="nav-link">Submit Waste</a>
-        <a href="reward.html" class="active">Rewards</a>
+        <a href="dashBoard.php" class="nav-link">Dashboard</a>
+        <a href="SubmitWaste.php" class="nav-link">Submit Waste</a>
+        <a href="reward.php" class="active">Rewards</a>
         <a href="#">Impact</a>
         <a href="#">Profile</a>
 
         <div class="notification">🔔 <span></span></div>
 
-        <a href="login.html">Logout</a>
+        <a href="login.php">Logout</a>
     </div>
 </div>
 

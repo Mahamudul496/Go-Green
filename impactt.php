@@ -673,26 +673,25 @@
         <ul class="menu">
 
             <li>
-                <a href="#" class="nav-link">
-                    Dashboard
-                </a>
+                <a href="dashBoard.php">Dashboard</a>
             </li>
 
             <li>
-                <a href="#" class="nav-link">
+                <a href="SubmitWaste.php" class="nav-link">
                     Submit Waste
                 </a>
             </li>
 
             <li>
-                <a href="#" class="nav-link">
+                <a href="reward.php" class="nav-link">
                     Rewards
                 </a>
             </li>
 
             <li>
-                <a href="#" class="nav-link active">
+                <a href="impactt.php" class="nav-link active">
                     Impact
+
                 </a>
             </li>
 
@@ -708,7 +707,7 @@
             </li>
 
             <li>
-                <a href="#" class="nav-link">
+                <a href="login.php" class="nav-link">
                     Logout
                 </a>
             </li>
