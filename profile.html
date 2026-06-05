@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GoGreen | Profile</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, sans-serif;
+            background:#f5f7fa;
+            color:#111827;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        /* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:15px 40px;
+
+    background:white;
+
+    border-bottom:1px solid #ddd;
+}
+
+.logo{
+    font-weight:bold;
+    font-size:20px;
+}
+
+/* NAV RIGHT */
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+/* NAV LINKS */
+
+.nav-right a{
+    position:relative;
+
+    text-decoration:none;
+
+    color:#555;
+
+    font-weight:500;
+
+    transition:all 0.3s ease;
+}
+
+/* HOVER */
+
+.nav-right a:hover{
+    color:#16a34a;
+}
+
+/* ACTIVE */
+
+.nav-right a.active{
+    color:#16a34a;
+}
+
+/* UNDERLINE */
+
+.nav-right a::after{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-5px;
+
+    width:0%;
+    height:2px;
+
+    background:#16a34a;
+
+    transition:0.3s ease;
+}
+
+.nav-right a:hover::after{
+    width:100%;
+}
+
+.nav-right a.active::after{
+    width:100%;
+}
+
+/* NOTIFICATION */
+
+.notification{
+    position:relative;
+    cursor:pointer;
+    font-size:20px;
+}
+
+/* RED DOT */
+
+.badge{
+    position:absolute;
+
+    top:0;
+    right:0;
+
+    width:8px;
+    height:8px;
+
+    background:red;
+
+    border-radius:50%;
+}
+
+/* DROPDOWN */
+
+.dropdown{
+    position:absolute;
+
+    top:30px;
+    right:0;
+
+    width:220px;
+
+    background:white;
+
+    border-radius:10px;
+
+    box-shadow:0 10px 20px rgba(0,0,0,0.15);
+
+    padding:10px;
+
+    display:none;
+
+    z-index:100;
+}
+
+.dropdown ul{
+    list-style:none;
+    padding:0;
+    margin:10px 0 0;
+}
+
+.dropdown li{
+    padding:8px;
+    border-radius:6px;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.dropdown li:hover{
+    background:#f3f4f6;
+}
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container{
+            width:850px;
+            margin:30px auto;
+        }
+
+        .title{
+            font-size:28px;
+            font-weight:700;
+            margin-bottom:10px;
+        }
+
+        .subtitle{
+            color:#6b7280;
+            margin-bottom:30px;
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card{
+            background:white;
+
+            border-radius:18px;
+
+            padding:30px;
+
+            margin-bottom:25px;
+
+            box-shadow:0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .card-top{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+
+            margin-bottom:25px;
+        }
+
+        .card-title{
+            font-size:18px;
+            font-weight:700;
+        }
+
+        .edit-btn{
+            color:#16a34a;
+            text-decoration:none;
+            font-weight:600;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group{
+            margin-bottom:22px;
+        }
+
+        .form-group label{
+            display:block;
+            margin-bottom:10px;
+
+            font-weight:600;
+            color:#374151;
+        }
+
+        .form-group label i{
+            margin-right:8px;
+        }
+
+        .form-control{
+            width:100%;
+
+            padding:14px;
+
+            border:1px solid #d1d5db;
+
+            border-radius:12px;
+
+            font-size:15px;
+
+            outline:none;
+
+            transition:0.3s;
+        }
+
+        .form-control:focus{
+            border-color:#16a34a;
+        }
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .btn{
+            background:#16a34a;
+            color:white;
+
+            border:none;
+
+            padding:14px 24px;
+
+            border-radius:12px;
+
+            font-size:15px;
+            font-weight:600;
+
+            cursor:pointer;
+
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            background:#15803d;
+        }
+
+        .logout-btn{
+            background:red;
+        }
+
+        .logout-btn:hover{
+            background:#dc2626;
+        }
+
+        /* =========================
+           LANGUAGE
+        ========================= */
+
+        .lang-header{
+            display:flex;
+            align-items:center;
+            gap:12px;
+
+            margin-bottom:25px;
+        }
+
+        .lang-icon{
+            width:46px;
+            height:46px;
+
+            border-radius:12px;
+
+            background:#dbeafe;
+
+            color:#2563eb;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            font-size:22px;
+        }
+
+        .lang-grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:18px;
+        }
+
+        .lang-box{
+            border:2px solid #d1d5db;
+
+            border-radius:16px;
+
+            padding:24px;
+
+            cursor:pointer;
+
+            transition:0.3s;
+        }
+
+        .lang-box.active{
+            border-color:#22c55e;
+            background:#f0fdf4;
+        }
+
+        .lang-box h3{
+            margin-bottom:8px;
+        }
+
+        .lang-box p{
+            color:#6b7280;
+        }
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats-grid{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:20px;
+        }
+
+        .stat h2{
+            margin-top:10px;
+            font-size:18px;
+        }
+
+        .green{
+            color:#16a34a;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width:900px){
+
+            .container{
+                width:95%;
+            }
+
+            .stats-grid{
+                grid-template-columns:repeat(2,1fr);
+            }
+
+            .lang-grid{
+                grid-template-columns:1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <!-- NAVBAR -->
+
+<header class="navbar">
+
+    <div class="logo">
+        🌱 GoGreen
+    </div>
+
+    <nav class="nav-right">
+
+        <a href="dashboard.php">
+            Dashboard
+        </a>
+
+        <a href="SubmitWaste.php">
+            Submit Waste
+        </a>
+
+        <a href="reward.php">
+            Rewards
+        </a>
+
+        <a href="impactt.php">
+            Impact
+        </a>
+
+        <a href="profile.php" class="active">
+            Profile
+        </a>
+
+        <!-- Notification -->
+
+        <div class="notification" id="notifBtn">
+
+            🔔
+
+            <span class="badge"></span>
+
+            <div class="dropdown" id="notifBox">
+
+                <p><strong>Notifications</strong></p>
+
+                <ul>
+                    <li>♻️ Waste pickup scheduled</li>
+                    <li>🎉 You earned 50 points</li>
+                    <li>🚚 Driver assigned</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <a href="login.php">
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================= -->
+
+    <div class="container">
+
+        <h1 class="title">
+            GoGreen | My Profile
+        </h1>
+
+        <p class="subtitle">
+            Manage your account settings and preferences
+        </p>
+
+        <!-- PROFILE INFO -->
+
+        <div class="card">
+
+            <div class="card-top">
+
+                <div class="card-title">
+                    Profile Information
+                </div>
+
+                <a href="#" class="edit-btn">
+                    <i class="fa-solid fa-pen"></i> Edit
+                </a>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    <i class="fa-regular fa-user"></i>
+                    Full Name
+                </label>
+
+                <input type="text" class="form-control" value="Midul">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    <i class="fa-regular fa-envelope"></i>
+                    Email
+                </label>
+
+                <input type="email" class="form-control" value="midul@gmail.com">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    <i class="fa-solid fa-phone"></i>
+                    Phone Number
+                </label>
+
+                <input type="text" class="form-control" value="1234">
+
+            </div>
+
+        </div>
+
+        <!-- CHANGE PASSWORD -->
+
+        <div class="card">
+
+            <div class="card-title" style="margin-bottom:25px;">
+                Change Password
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    <i class="fa-solid fa-lock"></i>
+                    Current Password
+                </label>
+
+                <input type="password" class="form-control">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    <i class="fa-solid fa-lock"></i>
+                    New Password
+                </label>
+
+                <input type="password" class="form-control">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    <i class="fa-solid fa-lock"></i>
+                    Confirm New Password
+                </label>
+
+                <input type="password" class="form-control">
+
+            </div>
+
+            <button class="btn">
+                Change Password
+            </button>
+
+        </div>
+
+        <!-- LANGUAGE -->
+
+        <div class="card">
+
+            <div class="lang-header">
+
+                <div class="lang-icon">
+                    🌐
+                </div>
+
+                <div>
+
+                    <h2 style="font-size:18px;">
+                        Language Preference
+                    </h2>
+
+                    <p style="color:#6b7280;">
+                        Select your preferred language
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="lang-grid">
+
+                <div class="lang-box active">
+
+                    <h3>
+                        English
+                    </h3>
+
+                    <p>
+                        English
+                    </p>
+
+                </div>
+
+                <div class="lang-box">
+
+                    <h3>
+                        বাংলা (Bangla)
+                    </h3>
+
+                    <p>
+                        বাংলা
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ACCOUNT STATS -->
+
+        <div class="card">
+
+            <div class="card-title" style="margin-bottom:25px;">
+                Account Statistics
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat">
+                    <p>Total Waste</p>
+                    <h2>0 kg</h2>
+                </div>
+
+                <div class="stat">
+                    <p>Eco-Points</p>
+                    <h2 class="green">0</h2>
+                </div>
+
+                <div class="stat">
+                    <p>Trees Planted</p>
+                    <h2>0</h2>
+                </div>
+
+                <div class="stat">
+                    <p>CO₂ Reduced</p>
+                    <h2>0.0 kg</h2>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- DANGER ZONE -->
+
+        <div class="card">
+
+            <div class="card-title" style="margin-bottom:25px;">
+                Danger Zone
+            </div>
+
+            <button class="btn logout-btn">
+                Logout from Account
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+    /* =========================
+       NOTIFICATION
+    ========================= */
+
+    const notifBtn = document.getElementById("notifBtn");
+    const notifBox = document.getElementById("notifBox");
+
+    notifBtn.addEventListener("click", function(e){
+
+        e.stopPropagation();
+
+        if(notifBox.style.display === "block"){
+
+            notifBox.style.display = "none";
+
+        }else{
+
+            notifBox.style.display = "block";
+        }
+
+    });
+
+    document.addEventListener("click", function(){
+
+        notifBox.style.display = "none";
+
+    });
+
+    /* =========================
+       LANGUAGE CHANGE
+    ========================= */
+
+    const langBoxes = document.querySelectorAll(".lang-box");
+
+    langBoxes.forEach(function(box){
+
+        box.addEventListener("click", function(){
+
+            langBoxes.forEach(function(item){
+                item.classList.remove("active");
+            });
+
+            box.classList.add("active");
+
+            const title = document.querySelector(".title");
+            const subtitle = document.querySelector(".subtitle");
+
+            const cardTitles = document.querySelectorAll(".card-title");
+
+            const labels = document.querySelectorAll("label");
+
+            const stats = document.querySelectorAll(".stat p");
+
+            const logoutBtn = document.querySelector(".logout-btn");
+
+            const passBtn = document.querySelector(".btn");
+
+            if(box.innerText.includes("বাংলা")){
+
+                title.innerHTML = "GoGreen | আমার প্রোফাইল";
+
+                subtitle.innerHTML =
+                "আপনার অ্যাকাউন্ট সেটিংস এবং পছন্দসমূহ পরিচালনা করুন";
+
+                cardTitles[0].innerHTML = "প্রোফাইল তথ্য";
+
+                cardTitles[1].innerHTML = "পাসওয়ার্ড পরিবর্তন করুন";
+
+                cardTitles[2].innerHTML = "অ্যাকাউন্ট পরিসংখ্যান";
+
+                cardTitles[3].innerHTML = "বিপদ অঞ্চল";
+
+                labels[0].innerHTML =
+                '<i class="fa-regular fa-user"></i> পুরো নাম';
+
+                labels[1].innerHTML =
+                '<i class="fa-regular fa-envelope"></i> ইমেইল';
+
+                labels[2].innerHTML =
+                '<i class="fa-solid fa-phone"></i> ফোন নম্বর';
+
+                labels[3].innerHTML =
+                '<i class="fa-solid fa-lock"></i> বর্তমান পাসওয়ার্ড';
+
+                labels[4].innerHTML =
+                '<i class="fa-solid fa-lock"></i> নতুন পাসওয়ার্ড';
+
+                labels[5].innerHTML =
+                '<i class="fa-solid fa-lock"></i> নতুন পাসওয়ার্ড নিশ্চিত করুন';
+
+                stats[0].innerHTML = "মোট বর্জ্য";
+
+                stats[1].innerHTML = "ইকো-পয়েন্ট";
+
+                stats[2].innerHTML = "গাছ লাগানো হয়েছে";
+
+                stats[3].innerHTML = "CO₂ হ্রাস";
+
+                passBtn.innerHTML = "পাসওয়ার্ড পরিবর্তন করুন";
+
+                logoutBtn.innerHTML = "অ্যাকাউন্ট থেকে লগআউট";
+
+            }else{
+
+                title.innerHTML = "GoGreen | My Profile";
+
+                subtitle.innerHTML =
+                "Manage your account settings and preferences";
+
+                cardTitles[0].innerHTML = "Profile Information";
+
+                cardTitles[1].innerHTML = "Change Password";
+
+                cardTitles[2].innerHTML = "Account Statistics";
+
+                cardTitles[3].innerHTML = "Danger Zone";
+
+                labels[0].innerHTML =
+                '<i class="fa-regular fa-user"></i> Full Name';
+
+                labels[1].innerHTML =
+                '<i class="fa-regular fa-envelope"></i> Email';
+
+                labels[2].innerHTML =
+                '<i class="fa-solid fa-phone"></i> Phone Number';
+
+                labels[3].innerHTML =
+                '<i class="fa-solid fa-lock"></i> Current Password';
+
+                labels[4].innerHTML =
+                '<i class="fa-solid fa-lock"></i> New Password';
+
+                labels[5].innerHTML =
+                '<i class="fa-solid fa-lock"></i> Confirm New Password';
+
+                stats[0].innerHTML = "Total Waste";
+
+                stats[1].innerHTML = "Eco-Points";
+
+                stats[2].innerHTML = "Trees Planted";
+
+                stats[3].innerHTML = "CO₂ Reduced";
+
+                passBtn.innerHTML = "Change Password";
+
+                logoutBtn.innerHTML = "Logout from Account";
+            }
+
+        });
+
+    });
+
+    /* =========================
+       CHANGE PASSWORD
+    ========================= */
+
+    const passwordBtn = document.querySelector(".btn");
+
+    passwordBtn.addEventListener("click", function(){
+
+        const passwords =
+        document.querySelectorAll('input[type="password"]');
+
+        const currentPass = passwords[0].value;
+
+        const newPass = passwords[1].value;
+
+        const confirmPass = passwords[2].value;
+
+        if(currentPass === "" ||
+           newPass === "" ||
+           confirmPass === ""){
+
+            alert("Please fill all password fields");
+
+            return;
+        }
+
+        if(newPass !== confirmPass){
+
+            alert("New password and confirm password do not match");
+
+            return;
+        }
+
+        alert("Password Changed Successfully!");
+
+        passwords[0].value = "";
+        passwords[1].value = "";
+        passwords[2].value = "";
+
+    });
+
+    /* =========================
+       LOGOUT
+    ========================= */
+
+    const logoutBtn =
+    document.querySelector(".logout-btn");
+
+    logoutBtn.addEventListener("click", function(){
+
+        alert("Logged Out Successfully");
+
+        window.location.href = "login.php";
+
+    });
+
+    /* =========================
+       NAVBAR LINKS
+    ========================= */
+
+    const navLinks =
+    document.querySelectorAll(".nav-right a");
+
+    navLinks.forEach(function(link){
+
+        link.addEventListener("click", function(){
+
+        });
+
+    });
+
+</script>
+
+</body>
+
+</html>
