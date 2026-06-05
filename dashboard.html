@@ -1,0 +1,718 @@
+<?php
+session_start();
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>GoGreen Dashboard</title>
+
+<style>
+
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f5f7fa;
+}
+
+/* =========================
+   NEW NAVBAR
+========================= */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 40px;
+
+    background: white;
+
+    border-bottom: 1px solid #ddd;
+}
+
+/* LEFT */
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-box {
+    font-size: 22px;
+}
+
+.logo-text {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* NAV RIGHT */
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* NAV LINKS */
+
+.nav-right a {
+    position: relative;
+
+    text-decoration: none;
+
+    color: #555;
+
+    font-weight: 500;
+
+    transition: all 0.3s ease;
+}
+
+/* HOVER */
+
+.nav-right a:hover {
+    color: #16a34a;
+}
+
+/* ACTIVE */
+
+.nav-right a.active {
+    color: #16a34a;
+}
+
+/* UNDERLINE */
+
+.nav-right a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -5px;
+
+    width: 0%;
+    height: 2px;
+
+    background: #16a34a;
+
+    transition: 0.3s ease;
+}
+
+.nav-right a:hover::after {
+    width: 100%;
+}
+
+.nav-right a.active::after {
+    width: 100%;
+}
+
+/* NOTIFICATION */
+
+.notification {
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* RED DOT */
+
+.badge {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 8px;
+    height: 8px;
+
+    background: red;
+
+    border-radius: 50%;
+}
+
+/* DROPDOWN */
+
+.dropdown {
+    position: absolute;
+
+    top: 30px;
+    right: 0;
+
+    width: 220px;
+
+    background: white;
+
+    border-radius: 10px;
+
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+
+    padding: 10px;
+
+    display: none;
+
+    z-index: 100;
+}
+
+.dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+.dropdown li {
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.dropdown li:hover {
+    background: #f3f4f6;
+}
+
+/* =========================
+   TITLE + POINTS
+========================= */
+
+.title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: nowrap;
+    padding: 20px 20px;
+}
+
+.points {
+    margin-left: auto;
+    font-weight: bold;
+    background: #e6f7e6;
+    padding: 10px 14px;
+    border-radius: 24px;
+    color: #2e7d32;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.dashboard-title-right {
+    text-align: left;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.dashboard-title-right h2 {
+    margin: 0;
+    font-size: 30px;
+    white-space: nowrap;
+}
+
+.dashboard-title-right .sub {
+    color: #6b7280;
+    margin: 8px 0 0;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    margin-top: 40px;
+    padding: 20px 20px;
+}
+
+.container h2 {
+    font-size: 30px;
+}
+
+.sub {
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin-top: 10px;
+}
+
+/* =========================
+   ICONS
+========================= */
+
+.icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    margin-bottom: 10px;
+}
+
+.blue {
+    background: #3b82f6;
+}
+
+.green {
+    background: #22c55e;
+}
+
+.darkgreen {
+    background: #15803d;
+}
+
+.purple {
+    background: #9333ea;
+}
+
+.orange {
+    background: #f97316;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section-title {
+    margin: 20px 0;
+}
+
+/* =========================
+   BOTTOM
+========================= */
+
+.bottom {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.bottom-card {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+}
+
+/* BOTTOM LAYOUT */
+
+.bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottom-card h4 {
+    margin: 0;
+}
+
+.bottom-card p {
+    margin: 2px 0 0;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+/* BOTTOM ICON */
+
+.bicon {
+    background: #e6f4ea;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* BADGE NUMBER */
+
+.badge-number {
+    background: #dbeafe;
+    color: #2563eb;
+
+    padding: 6px 10px;
+
+    border-radius: 50%;
+
+    font-size: 12px;
+}
+
+/* LINKS */
+
+.action-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.action-link .card {
+    cursor: pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<header class="navbar">
+
+    <div class="left">
+
+        <div class="logo-box">
+            🌱
+        </div>
+
+        <div>
+            <div class="logo-text">GoGreen</div>
+            <small>Smart Waste • Green Rewards</small>
+        </div>
+
+    </div>
+
+    <nav class="nav-right">
+
+    <a href="dashboard.php" class="active">
+        Dashboard
+    </a>
+
+    <a href="SubmitWaste.php">
+        Submit Waste
+    </a>
+
+    <a href="reward.php">
+        Rewards
+    </a>
+
+    <a href="impactt.php">
+        Impact
+    </a>
+
+    <a href="profile.php">
+        Profile
+    </a>
+
+    <!-- Notification -->
+
+    <div class="notification" id="notifBtn">
+
+        <a href="notification.php"
+           style="text-decoration:none; color:inherit;">
+
+            🔔
+
+            <span class="badge"></span>
+
+        </a>
+
+        <div class="dropdown" id="notifBox">
+
+            <p><strong>Notifications</strong></p>
+
+            <ul>
+                <li>♻️ Waste pickup scheduled</li>
+                <li>🎉 You earned 50 points</li>
+                <li>🚚 Driver assigned</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <a href="login.php">
+        Logout
+    </a>
+
+</nav>
+
+</header>
+
+<div class="container">
+
+    <div class="title-row">
+
+        <div class="dashboard-title-right">
+
+            <h2>
+                GoGreen | User Dashboard
+            </h2>
+
+            <p class="sub">
+                Welcome back, Midul! Track your environmental impact and earn rewards
+            </p>
+
+        </div>
+
+        <div class="points">
+            🌟 <?php echo isset($_SESSION['points']) ? $_SESSION['points'] : 0; ?>
+        </div>
+
+    </div>
+
+    <!-- Stats -->
+    <div class="grid">
+
+        <div class="card">
+            <div class="icon blue">♻️</div>
+            <p>Total Waste Submitted</p>
+            <h3>0 kg</h3>
+        </div>
+
+        <div class="card">
+            <div class="icon green">🌿</div>
+            <p>Eco-Points Earned</p>
+
+            <h3>
+                <?php echo isset($_SESSION['points']) ? $_SESSION['points'] : 0; ?>
+            </h3>
+        </div>
+
+        <div class="card">
+            <div class="icon darkgreen">🌲</div>
+            <p>Trees Planted</p>
+            <h3>0</h3>
+        </div>
+
+        <div class="card">
+            <div class="icon purple">☁️</div>
+            <p>CO₂ Reduced</p>
+            <h3>0 kg</h3>
+        </div>
+
+    </div>
+
+    <h3 class="section-title">
+        Quick Actions
+    </h3>
+
+    <!-- Quick Actions -->
+    <!-- Quick Actions -->
+
+<div class="grid">
+
+    <!-- Submit Waste -->
+
+    <a href="SubmitWaste.php" class="action-link">
+
+        <div class="card">
+
+            <div class="icon blue">
+                ⬆️
+            </div>
+
+            <h4>
+                Submit Waste
+            </h4>
+
+            <p>
+                Upload waste for recycling
+            </p>
+
+        </div>
+
+    </a>
+
+    <!-- Manage Pickups -->
+
+    <a href="pickup.php" class="action-link">
+
+        <div class="card">
+
+            <div class="icon green">
+                🚚
+            </div>
+
+            <h4>
+                Manage Pickups
+            </h4>
+
+            <p>
+                View and edit pickup requests
+            </p>
+
+        </div>
+
+    </a>
+
+    <!-- Rewards -->
+
+    <a href="reward.php" class="action-link">
+
+        <div class="card">
+
+            <div class="icon purple">
+                🎁
+            </div>
+
+            <h4>
+                Rewards
+            </h4>
+
+            <p>
+                Redeem your eco-points
+            </p>
+
+        </div>
+
+    </a>
+
+    <!-- Impact -->
+
+    <a href="impactt.php" class="action-link">
+
+        <div class="card">
+
+            <div class="icon orange">
+                📊
+            </div>
+
+            <h4>
+                Environmental Impact
+            </h4>
+
+            <p>
+                View your contribution
+            </p>
+
+        </div>
+
+    </a>
+
+</div>
+
+    <!-- Bottom -->
+    <div class="bottom">
+
+        <div class="card">
+
+            <div class="bottom-row">
+
+                <div>
+
+                    <h4>
+                        <a href="my-submissions.php"
+                           style="text-decoration:none;color:inherit;">
+
+                            My Submissions
+
+                        </a>
+                    </h4>
+
+                    <p>View waste history</p>
+
+                </div>
+
+                <span class="bicon green">
+                    ♻️
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="bottom-row">
+
+                <div>
+                    <h4>Notifications</h4>
+                    <p>View updates</p>
+                </div>
+
+                <span class="badge-number">
+                    3
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="bottom-row">
+
+                <div>
+                    <h4>Profile Settings</h4>
+                    <p>Manage account</p>
+                </div>
+
+                <span class="bicon green">
+                    👤
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const notifBtn = document.getElementById("notifBtn");
+const notifBox = document.getElementById("notifBox");
+
+notifBtn.addEventListener("click", function(e){
+
+    e.stopPropagation();
+
+    if(notifBox.style.display === "block"){
+
+        notifBox.style.display = "none";
+
+    } else {
+
+        notifBox.style.display = "block";
+    }
+
+});
+
+document.addEventListener("click", function(){
+
+    notifBox.style.display = "none";
+
+});
+
+</script>
+
+</body>
+</html>
