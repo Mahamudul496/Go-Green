@@ -94,11 +94,30 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `points`, `bonus_given`)
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `message` text NOT NULL,
+  `points_delta` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `waste_submissions`
 --
 
 CREATE TABLE `waste_submissions` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
   `waste_type` varchar(50) DEFAULT NULL,
   `weight` decimal(10,2) DEFAULT NULL,
   `description` text DEFAULT NULL,
@@ -106,6 +125,8 @@ CREATE TABLE `waste_submissions` (
   `pickup_date` date DEFAULT NULL,
   `time_slot` varchar(50) DEFAULT NULL,
   `image_path` varchar(255) DEFAULT NULL,
+  `status` varchar(20) NOT NULL DEFAULT 'Pending',
+  `points_awarded` int(11) DEFAULT 0,
   `submitted_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -113,10 +134,10 @@ CREATE TABLE `waste_submissions` (
 -- Dumping data for table `waste_submissions`
 --
 
-INSERT INTO `waste_submissions` (`id`, `waste_type`, `weight`, `description`, `address`, `pickup_date`, `time_slot`, `image_path`, `submitted_at`) VALUES
-(1, 'Plastic', 20.00, 'hello', 'Azimpur', '2026-05-30', 'Morning', 'uploads/1777965958_r15-v3-black1.png', '2026-05-05 07:25:58'),
-(2, 'Glass', 15.00, 'Solid Glass', 'Banani', '2026-05-10', 'Afternoon', 'uploads/1777966200_r15-v3-black1.png', '2026-05-05 07:30:00'),
-(3, 'Metal', 100.00, 'Metal Circuit', 'UIU', '2026-05-05', 'Afternoon', 'uploads/1777969131_Capture.PNG', '2026-05-05 08:18:51');
+INSERT INTO `waste_submissions` (`id`, `user_id`, `waste_type`, `weight`, `description`, `address`, `pickup_date`, `time_slot`, `image_path`, `status`, `points_awarded`, `submitted_at`) VALUES
+(1, 5, 'Plastic', 20.00, 'hello', 'Azimpur', '2026-05-30', 'Morning', 'uploads/1777965958_r15-v3-black1.png', 'Pending', 0, '2026-05-05 07:25:58'),
+(2, 5, 'Glass', 15.00, 'Solid Glass', 'Banani', '2026-05-10', 'Afternoon', 'uploads/1777966200_r15-v3-black1.png', 'Pending', 0, '2026-05-05 07:30:00'),
+(3, 5, 'Metal', 100.00, 'Metal Circuit', 'UIU', '2026-05-05', 'Afternoon', 'uploads/1777969131_Capture.PNG', 'Pending', 0, '2026-05-05 08:18:51');
 
 --
 -- Indexes for dumped tables

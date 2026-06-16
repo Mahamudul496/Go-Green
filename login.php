@@ -19,7 +19,7 @@
             <a href="admin-login.php" class="role-card">🚚 Login as Admin</a>
         </div>
 
-        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+        <p>Don't have an account? <a href="signup.php">Sign Up</a></p>
     </div>
 
 </body>

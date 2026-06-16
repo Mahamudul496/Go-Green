@@ -19,7 +19,7 @@
         <a href="staff-signup.html" class="role-card">🚚 Sign Up as Pickup Staff</a>
     </div>
 
-    <p>Already have an account? <a href="login.html">Login</a></p>
+    <p>Already have an account? <a href="login.php">Login</a></p>
 </div>
 
 </body>

@@ -1,8 +1,16 @@
 <?php
+session_start();
 include 'config.php';
 
-// Fetch submissions
-$query = "SELECT * FROM waste_submissions ORDER BY submitted_at DESC";
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit;
+}
+
+$userId = intval($_SESSION['user_id']);
+
+// Fetch submissions for current user
+$query = "SELECT * FROM waste_submissions WHERE user_id='$userId' ORDER BY submitted_at DESC";
 $result = $conn->query($query);
 
 // Initialize the counter for numbering
@@ -120,10 +128,16 @@ $count = 1;
 
                         <!-- 4. Status & Points -->
                         <div style="text-align: right;">
-                            <span class="status-tag">Pending Review</span>
-                            <p style="margin-top: 10px; font-weight: bold; color: #1b4332;">
-                                Est. Points: <?php echo ($row['weight'] * 10); ?>
-                            </p>
+                            <span class="status-tag"><?php echo htmlspecialchars($row['status'] ?? 'Pending'); ?></span>
+                            <?php if ($row['status'] === 'Approved'): ?>
+                                <p style="margin-top: 10px; font-weight: bold; color: #1b4332;">
+                                    Points Awarded: <?php echo intval($row['points_awarded']); ?>
+                                </p>
+                            <?php else: ?>
+                                <p style="margin-top: 10px; font-weight: bold; color: #1b4332;">
+                                    Est. Points: <?php echo ($row['weight'] * 10); ?>
+                                </p>
+                            <?php endif; ?>
                         </div>
                     </div>
                 <?php endwhile; ?>
