@@ -1,6 +1,8 @@
 <?php
 session_start();
-include __DIR__ . '/../config.php';
+$_SESSION['user_id'] = 5; // Test as user 5
+
+include __DIR__ . '/config.php';
 
 header('Content-Type: application/json');
 
@@ -20,6 +22,8 @@ if ($r && $row = $r->fetch_assoc()) {
     $points = intval($row['points']);
 }
 
+echo "User $userId points: $points\n\n";
+
 // submissions
 $subs = [];
 $res = $conn->query("SELECT id, waste_type, weight, image_path, address, pickup_date, time_slot, status, points_awarded, submitted_at FROM waste_submissions WHERE user_id='$userId' ORDER BY submitted_at DESC");
@@ -29,15 +33,7 @@ if ($res) {
     }
 }
 
-// notifications count (all notifications for user)
-$notifCount = 0;
-$nr = $conn->query("SELECT COUNT(*) AS cnt FROM notifications WHERE user_id='$userId'");
-if ($nr && $nrRow = $nr->fetch_assoc()) { $notifCount = intval($nrRow['cnt']); }
-
-echo json_encode([
-    'points' => $points,
-    'submissions' => $subs,
-    'notifications_count' => $notifCount,
-]);
+echo "Submissions for user $userId:\n";
+print_r($subs);
 
 ?>
