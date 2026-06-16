@@ -49,6 +49,7 @@ if (isset($_POST['submit'])) {
 
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['points'] = $user['points'];
+        $_SESSION['user_email'] = $user['email'];
 
         header("Location: dashBoard.php");
         exit();

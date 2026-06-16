@@ -515,13 +515,13 @@ input:checked + .slider:before{
 
             🔔
 
-            <span class="badge"><?php echo $notificationCount; ?></span>
+            <span class="badge" id="notif-badge"><?php echo $notificationCount; ?></span>
 
             <div class="dropdown" id="notifBox">
 
                 <p><strong>Notifications</strong></p>
 
-                <ul>
+                <ul id="notif-dropdown-list">
                     <?php if (count($notifications) > 0): ?>
                         <?php foreach (array_slice($notifications, 0, 3) as $notification): ?>
                             <li><?php echo htmlspecialchars($notification['title'] . ' — ' . $notification['message']); ?></li>
@@ -566,7 +566,7 @@ input:checked + .slider:before{
 
         </div>
 
-        <div class="unread">
+        <div class="unread" id="unread-count">
             <i class="fa-regular fa-bell"></i>
             <?php echo $notificationCount; ?> Unread
         </div>
@@ -753,6 +753,72 @@ document.addEventListener("click", function(){
     notifBox.style.display = "none";
 
 });
+
+// Poll notifications API and update badge, dropdown and page list
+async function refreshNotifications() {
+    try {
+        const res = await fetch('api/notifications.php');
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.error) return;
+
+        // update header badge(s)
+        const badges = document.querySelectorAll('.badge');
+        badges.forEach(b => b.textContent = data.count || 0);
+
+        // update notif badge id
+        const nb = document.getElementById('notif-badge');
+        if (nb) nb.textContent = data.count || 0;
+
+        // update unread count text
+        const unread = document.getElementById('unread-count');
+        if (unread) unread.innerHTML = '<i class="fa-regular fa-bell"></i> ' + (data.count || 0) + ' Unread';
+
+        // dropdown
+        const dd = document.getElementById('notif-dropdown-list');
+        if (dd) {
+            dd.innerHTML = '';
+            const list = data.notifications || [];
+            if (list.length === 0) {
+                const li = document.createElement('li'); li.textContent = 'No notifications yet'; dd.appendChild(li);
+            } else {
+                list.slice(0,3).forEach(n => {
+                    const li = document.createElement('li');
+                    li.textContent = (n.title || '') + ' — ' + (n.message || '');
+                    dd.appendChild(li);
+                });
+            }
+        }
+
+        // main notifications list
+        const container = document.querySelector('.notifications');
+        if (container) {
+            if (!data.notifications || data.notifications.length === 0) {
+                container.innerHTML = `<div class="item"><div class="item-left"><div class="icon blue"><i class="fa-solid fa-bell"></i></div><div class="content"><h3>No notifications yet</h3><p>Any reward updates will appear here.</p></div></div><div class="time">--</div></div>`;
+            } else {
+                let html = '';
+                data.notifications.forEach(n => {
+                    const type = n.type || 'info';
+                    let color = 'blue';
+                    let icon = 'fa-info-circle';
+                    if (type === 'success') { color = 'green'; icon = 'fa-circle-check'; }
+                    if (type === 'warning') { color = 'yellow'; icon = 'fa-circle-exclamation'; }
+                    const pointsLabel = n.points_delta ? ((n.points_delta>0?'+':'')+n.points_delta+' points') : '';
+                    html += `<div class="item"><div class="item-left"><div class="icon ${color}"><i class="fa-solid ${icon}"></i></div><div class="content"><h3>${escapeHtml(n.title||'')}</h3><p>${escapeHtml(n.message||'')}</p>${pointsLabel?`<span class="points">${escapeHtml(pointsLabel)}</span>`:''}</div></div><div class="time">${escapeHtml(n.created_at||'')}</div></div>`;
+                });
+                container.innerHTML = html;
+            }
+        }
+
+    } catch (e) {
+        // fail silently
+    }
+}
+
+function escapeHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+refreshNotifications();
+setInterval(refreshNotifications, 5000);
 
 </script>
 

@@ -38,12 +38,31 @@ if (isset($_POST['submit'])) {
                 $hasUserIdColumn = true;
             }
 
+            // Detect submitter_email column
+            $hasSubmitterEmail = false;
+            $colCheck = $conn->query("SHOW COLUMNS FROM waste_submissions LIKE 'submitter_email'");
+            if ($colCheck && $colCheck->num_rows > 0) {
+                $hasSubmitterEmail = true;
+            }
+
             if ($hasUserIdColumn) {
-                $stmt = $conn->prepare("INSERT INTO waste_submissions (user_id, waste_type, weight, description, address, pickup_date, time_slot, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-                $stmt->bind_param("isdsssss", $userId, $waste_type, $weight, $description, $address, $pickup_date, $time_slot, $target_file);
+                if ($hasSubmitterEmail) {
+                    $stmt = $conn->prepare("INSERT INTO waste_submissions (user_id, submitter_email, waste_type, weight, description, address, pickup_date, time_slot, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    $userEmail = $_SESSION['user_email'] ?? null;
+                    $stmt->bind_param("issdsssss", $userId, $userEmail, $waste_type, $weight, $description, $address, $pickup_date, $time_slot, $target_file);
+                } else {
+                    $stmt = $conn->prepare("INSERT INTO waste_submissions (user_id, waste_type, weight, description, address, pickup_date, time_slot, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                    $stmt->bind_param("isdsssss", $userId, $waste_type, $weight, $description, $address, $pickup_date, $time_slot, $target_file);
+                }
             } else {
-                $stmt = $conn->prepare("INSERT INTO waste_submissions (waste_type, weight, description, address, pickup_date, time_slot, image_path) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                $stmt->bind_param("sdsssss", $waste_type, $weight, $description, $address, $pickup_date, $time_slot, $target_file);
+                if ($hasSubmitterEmail) {
+                    $stmt = $conn->prepare("INSERT INTO waste_submissions (submitter_email, waste_type, weight, description, address, pickup_date, time_slot, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                    $userEmail = $_SESSION['user_email'] ?? null;
+                    $stmt->bind_param("ssdsssss", $userEmail, $waste_type, $weight, $description, $address, $pickup_date, $time_slot, $target_file);
+                } else {
+                    $stmt = $conn->prepare("INSERT INTO waste_submissions (waste_type, weight, description, address, pickup_date, time_slot, image_path) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                    $stmt->bind_param("sdsssss", $waste_type, $weight, $description, $address, $pickup_date, $time_slot, $target_file);
+                }
             }
 
             if ($stmt->execute()) {
