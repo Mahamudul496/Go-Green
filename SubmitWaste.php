@@ -1,5 +1,15 @@
 <?php
+session_start();
 include 'config.php';
+
+ensureWasteSubmissionsSchema($conn);
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit;
+}
+
+$userId = intval($_SESSION['user_id']);
 
 /* 2. PROCESSING LOGIC */
 if (isset($_POST['submit'])) {
@@ -22,11 +32,41 @@ if (isset($_POST['submit'])) {
         $target_file = $target_dir . $file_name;
 
         if (move_uploaded_file($_FILES["waste_image"]["tmp_name"], $target_file)) {
-            $stmt = $conn->prepare("INSERT INTO waste_submissions (waste_type, weight, description, address, pickup_date, time_slot, image_path) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sdsssss", $waste_type, $weight, $description, $address, $pickup_date, $time_slot, $target_file);
+            $hasUserIdColumn = false;
+            $columnCheck = $conn->query("SHOW COLUMNS FROM waste_submissions LIKE 'user_id'");
+            if ($columnCheck && $columnCheck->num_rows > 0) {
+                $hasUserIdColumn = true;
+            }
+
+            // Detect submitter_email column
+            $hasSubmitterEmail = false;
+            $colCheck = $conn->query("SHOW COLUMNS FROM waste_submissions LIKE 'submitter_email'");
+            if ($colCheck && $colCheck->num_rows > 0) {
+                $hasSubmitterEmail = true;
+            }
+
+            if ($hasUserIdColumn) {
+                if ($hasSubmitterEmail) {
+                    $stmt = $conn->prepare("INSERT INTO waste_submissions (user_id, submitter_email, waste_type, weight, description, address, pickup_date, time_slot, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    $userEmail = $_SESSION['user_email'] ?? null;
+                    $stmt->bind_param("issdsssss", $userId, $userEmail, $waste_type, $weight, $description, $address, $pickup_date, $time_slot, $target_file);
+                } else {
+                    $stmt = $conn->prepare("INSERT INTO waste_submissions (user_id, waste_type, weight, description, address, pickup_date, time_slot, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                    $stmt->bind_param("isdsssss", $userId, $waste_type, $weight, $description, $address, $pickup_date, $time_slot, $target_file);
+                }
+            } else {
+                if ($hasSubmitterEmail) {
+                    $stmt = $conn->prepare("INSERT INTO waste_submissions (submitter_email, waste_type, weight, description, address, pickup_date, time_slot, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                    $userEmail = $_SESSION['user_email'] ?? null;
+                    $stmt->bind_param("ssdsssss", $userEmail, $waste_type, $weight, $description, $address, $pickup_date, $time_slot, $target_file);
+                } else {
+                    $stmt = $conn->prepare("INSERT INTO waste_submissions (waste_type, weight, description, address, pickup_date, time_slot, image_path) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                    $stmt->bind_param("sdsssss", $waste_type, $weight, $description, $address, $pickup_date, $time_slot, $target_file);
+                }
+            }
 
             if ($stmt->execute()) {
-                echo "<script>alert('Waste submitted successfully!'); window.location.href='dashBoard.php';</script>";
+                echo "<script>alert('Waste submitted successfully! Pending admin approval.'); window.location.href='dashBoard.php';</script>";
                 exit();
             } else {
                 $error_msg = "Error: " . $stmt->error;

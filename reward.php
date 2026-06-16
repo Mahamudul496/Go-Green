@@ -54,7 +54,7 @@
 
     <!-- CARDS -->
     <div class="cards">
-          <a href="tree-saplings.html" class="card-link">
+          <a href="tree-saplings.php" class="card-link">
 
         <div class="card">
             <div class="card-top green">🌱 Tree Saplings</div>

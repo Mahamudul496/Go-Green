@@ -49,7 +49,7 @@ session_start();
                 <h2>GoGreen | User Dashboard</h2>
                 <p class="sub">Welcome back, Midul! Track your environmental impact and earn rewards — new users get a 25-point bonus on first login.</p>
             </div>
-            <div class="points">
+            <div class="points" id="points-badge">
                 🌟 <?php echo isset($_SESSION['points']) ? $_SESSION['points'] : 0; ?>
             </div>
         </div>
@@ -59,27 +59,50 @@ session_start();
             <div class="card">
                 <div class="icon blue">♻️</div>
                 <p>Total Waste Submitted</p>
-                <h3>0 kg</h3>
+                <h3 id="total-waste">0 kg</h3>
             </div>
 
             <div class="card">
                 <div class="icon green">🌿</div>
                 <p>Eco-Points Earned</p>
-                <h3><?php echo isset($_SESSION['points']) ? $_SESSION['points'] : 0; ?></h3>
+                <h3 id="eco-points"><?php echo isset($_SESSION['points']) ? $_SESSION['points'] : 0; ?></h3>
             </div>
 
             <div class="card">
                 <div class="icon darkgreen">🌲</div>
                 <p>Trees Planted</p>
-                <h3>0</h3>
+                <h3 id="trees-planted">0</h3>
             </div>
 
             <div class="card">
                 <div class="icon purple">☁️</div>
                 <p>CO₂ Reduced</p>
-                <h3>0 kg</h3>
+                <h3 id="co2-reduced">0 kg</h3>
             </div>
         </div>
+
+        <script>
+            // Poll dashboard summary every 5 seconds and update cards.
+            async function fetchDashboardSummary() {
+                try {
+                    const res = await fetch('api/dashboard_summary.php');
+                    if (!res.ok) return;
+                    const data = await res.json();
+                    document.getElementById('total-waste').textContent = (data.total_waste_kg ?? 0) + ' kg';
+                    document.getElementById('eco-points').textContent = (data.points ?? 0);
+                    document.getElementById('points-badge').textContent = '🌟 ' + (data.points ?? 0);
+                    document.getElementById('trees-planted').textContent = (data.trees_planted ?? 0);
+                    document.getElementById('co2-reduced').textContent = (data.co2_reduced_kg ?? 0) + ' kg';
+                } catch (e) {
+                    // fail silently
+                }
+            }
+
+            // initial fetch
+            fetchDashboardSummary();
+            // poll
+            setInterval(fetchDashboardSummary, 5000);
+        </script>
 
         <h3 class="section-title">Quick Actions</h3>
 
@@ -93,23 +116,30 @@ session_start();
                 </div>
             </a>
 
-            <div class="card">
-                <div class="icon green">🚚</div>
-                <h4>Manage Pickups</h4>
-                <p>View and edit pickup requests</p>
-            </div>
+            <a href="mngPickups.php" class="action-link">
+                <div class="card">
+                    <div class="icon green">🚚</div>
+                    <h4>Manage Pickups</h4>
+                    <p>View and edit pickup requests</p>
+                </div>
+            </a>
 
-            <div class="card">
-                <div class="icon purple">🎁</div>
-                <h4>Rewards</h4>
-                <p>Redeem your eco-points</p>
-            </div>
+            <a href="reward.php" class="action-link">
+                <div class="card">
+                    <div class="icon purple">🎁</div>
+                    <h4>Rewards</h4>
+                    <p>Redeem your eco-points</p>
+                </div>
+            </a>
 
-            <div class="card">
-                <div class="icon orange">📊</div>
-                <h4>Environmental Impact</h4>
-                <p>View your contribution</p>
-            </div>
+            <a href="impactt.php" class="action-link">
+                <div class="card">
+                    <div class="icon orange">📊</div>
+                    <h4>Environmental Impact</h4>
+                    <p>View your contribution</p>
+                </div>
+            </a>
+
         </div>
 
         <!-- Bottom -->
@@ -117,30 +147,36 @@ session_start();
 
             <div class="card">
                 <div class="bottom-row">
-                    <div>
-                        <h4><a href="my-submissions.php" style="text-decoration: none;color: inherit;">My Submissions</a></h4>
-                        <p>View waste history</p>
-                    </div>
+                    <a href="my-submissions.php" class="action-link">
+                        <div>
+                            <h4>My Submissions</h4>
+                            <p>View waste history</p>
+                        </div>
+                    </a>
                     <span class="bicon green">♻️</span>
                 </div>
             </div>
 
             <div class="card">
                 <div class="bottom-row">
-                    <div>
-                        <h4>Notifications</h4>
-                        <p>View updates</p>
-                    </div>
+                    <a href="notification.php" class="action-link">
+                        <div>
+                            <h4>Notifications</h4>
+                            <p>View updates</p>
+                        </div>
+                    </a>
                     <span class="badge">3</span>
                 </div>
             </div>
 
             <div class="card">
                 <div class="bottom-row">
-                    <div>
-                        <h4>Profile Settings</h4>
-                        <p>Manage account</p>
-                    </div>
+                    <a href="profile.php" class="action-link">
+                        <div>
+                            <h4>Profile Settings</h4>
+                            <p>Manage account</p>
+                        </div>
+                    </a>
                     <span class="bicon green">👤</span>
                 </div>
             </div>

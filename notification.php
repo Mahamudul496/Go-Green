@@ -1,3 +1,23 @@
+<?php
+session_start();
+include 'config.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit;
+}
+
+$userId = intval($_SESSION['user_id']);
+$notifications = [];
+$notificationCount = 0;
+$result = mysqli_query($conn, "SELECT * FROM notifications WHERE user_id='$userId' ORDER BY created_at DESC");
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $notifications[] = $row;
+    }
+    $notificationCount = count($notifications);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -495,16 +515,20 @@ input:checked + .slider:before{
 
             🔔
 
-            <span class="badge"></span>
+            <span class="badge" id="notif-badge"><?php echo $notificationCount; ?></span>
 
             <div class="dropdown" id="notifBox">
 
                 <p><strong>Notifications</strong></p>
 
-                <ul>
-                    <li>♻️ Waste pickup scheduled</li>
-                    <li>🎉 You earned 50 points</li>
-                    <li>🚚 Driver assigned</li>
+                <ul id="notif-dropdown-list">
+                    <?php if (count($notifications) > 0): ?>
+                        <?php foreach (array_slice($notifications, 0, 3) as $notification): ?>
+                            <li><?php echo htmlspecialchars($notification['title'] . ' — ' . $notification['message']); ?></li>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <li>No notifications yet</li>
+                    <?php endif; ?>
                 </ul>
 
             </div>
@@ -542,199 +566,96 @@ input:checked + .slider:before{
 
         </div>
 
-        <div class="unread">
+        <div class="unread" id="unread-count">
             <i class="fa-regular fa-bell"></i>
-            3 Unread
+            <?php echo $notificationCount; ?> Unread
         </div>
 
-    </div>
+</div>
 
-    <!-- NOTIFICATION LIST -->
+<!-- NOTIFICATION LIST -->
 
-    <div class="notifications">
+<div class="notifications">
+<?php
+if (count($notifications) > 0):
+    foreach ($notifications as $notification):
+        $type = $notification['type'] ?? 'info';
+        $iconClass = 'fa-info-circle';
+        $colorClass = 'blue';
 
+        if ($type === 'success') {
+            $iconClass = 'fa-circle-check';
+            $colorClass = 'green';
+        } elseif ($type === 'warning') {
+            $iconClass = 'fa-circle-exclamation';
+            $colorClass = 'yellow';
+        }
+?>
         <div class="item">
-
             <div class="item-left">
-
-                <div class="icon green">
-                    <i class="fa-solid fa-circle-check"></i>
+                <div class="icon <?php echo $colorClass; ?>">
+                    <i class="fa-solid <?php echo $iconClass; ?>"></i>
                 </div>
 
                 <div class="content">
-
                     <h3>
-                        Waste Approved
-                        <span class="dot-blue">●</span>
+                        <?php echo htmlspecialchars($notification['title']); ?>
+                        <?php if (!empty($notification['dot'])): ?>
+                            <span class="dot-blue">●</span>
+                        <?php endif; ?>
                     </h3>
 
                     <p>
-                        Your waste submission of 2.5 kg Plastic has been approved
+                        <?php echo htmlspecialchars($notification['text'] ?? $notification['message'] ?? ''); ?>
                     </p>
 
-                    <span class="points">
-                        +25 points
-                    </span>
+                    <?php
+                        $pointsLabel = '';
+                        if (!empty($notification['points'])) {
+                            $pointsLabel = $notification['points'];
+                        } elseif (isset($notification['points_delta']) && $notification['points_delta'] !== null) {
+                            $pointsLabel = ($notification['points_delta'] > 0 ? '+' : '') . $notification['points_delta'] . ' points';
+                        }
+                    ?>
 
+                    <?php if ($pointsLabel !== ''): ?>
+                        <span class="points">
+                            <?php echo htmlspecialchars($pointsLabel); ?>
+                        </span>
+                    <?php endif; ?>
                 </div>
-
             </div>
 
             <div class="time">
-                2 hours ago
+                <?php echo htmlspecialchars($notification['created_at'] ?? 'Just now'); ?>
             </div>
-
         </div>
-
+<?php
+    endforeach;
+else:
+?>
         <div class="item">
-
             <div class="item-left">
-
                 <div class="icon blue">
-                    <i class="fa-regular fa-clock"></i>
+                    <i class="fa-solid fa-bell"></i>
                 </div>
 
                 <div class="content">
-
                     <h3>
-                        Pickup Assigned
-                        <span class="dot-blue">●</span>
+                        No notifications yet
                     </h3>
 
                     <p>
-                        Collector has been assigned for your pickup request
+                        Any reward updates will appear here.
                     </p>
-
                 </div>
-
             </div>
 
             <div class="time">
-                5 hours ago
+                --
             </div>
-
         </div>
-
-        <div class="item">
-
-            <div class="item-left">
-
-                <div class="icon purple">
-                    <i class="fa-solid fa-gift"></i>
-                </div>
-
-                <div class="content">
-
-                    <h3>
-                        Reward Redeemed
-                        <span class="dot-blue">●</span>
-                    </h3>
-
-                    <p>
-                        Your Tree Sapling reward has been processed
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="time">
-                1 day ago
-            </div>
-
-        </div>
-
-        <div class="item">
-
-            <div class="item-left">
-
-                <div class="icon yellow">
-                    <i class="fa-solid fa-circle-exclamation"></i>
-                </div>
-
-                <div class="content">
-
-                    <h3>
-                        Points Added
-                    </h3>
-
-                    <p>
-                        Bonus points awarded for consistent recycling
-                    </p>
-
-                    <span class="points">
-                        +10 points
-                    </span>
-
-                </div>
-
-            </div>
-
-            <div class="time">
-                2 days ago
-            </div>
-
-        </div>
-
-        <div class="item">
-
-            <div class="item-left">
-
-                <div class="icon green">
-                    <i class="fa-solid fa-circle-check"></i>
-                </div>
-
-                <div class="content">
-
-                    <h3>
-                        Waste Approved
-                    </h3>
-
-                    <p>
-                        Your waste submission of 1.8 kg Paper has been approved
-                    </p>
-
-                    <span class="points">
-                        +18 points
-                    </span>
-
-                </div>
-
-            </div>
-
-            <div class="time">
-                3 days ago
-            </div>
-
-        </div>
-
-        <div class="item">
-
-            <div class="item-left">
-
-                <div class="icon blue">
-                    <i class="fa-regular fa-clock"></i>
-                </div>
-
-                <div class="content">
-
-                    <h3>
-                        Pickup Completed
-                    </h3>
-
-                    <p>
-                        Your waste has been successfully collected
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="time">
-                4 days ago
-            </div>
-
-        </div>
+<?php endif; ?>
 
     </div>
 
@@ -832,6 +753,72 @@ document.addEventListener("click", function(){
     notifBox.style.display = "none";
 
 });
+
+// Poll notifications API and update badge, dropdown and page list
+async function refreshNotifications() {
+    try {
+        const res = await fetch('api/notifications.php');
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.error) return;
+
+        // update header badge(s)
+        const badges = document.querySelectorAll('.badge');
+        badges.forEach(b => b.textContent = data.count || 0);
+
+        // update notif badge id
+        const nb = document.getElementById('notif-badge');
+        if (nb) nb.textContent = data.count || 0;
+
+        // update unread count text
+        const unread = document.getElementById('unread-count');
+        if (unread) unread.innerHTML = '<i class="fa-regular fa-bell"></i> ' + (data.count || 0) + ' Unread';
+
+        // dropdown
+        const dd = document.getElementById('notif-dropdown-list');
+        if (dd) {
+            dd.innerHTML = '';
+            const list = data.notifications || [];
+            if (list.length === 0) {
+                const li = document.createElement('li'); li.textContent = 'No notifications yet'; dd.appendChild(li);
+            } else {
+                list.slice(0,3).forEach(n => {
+                    const li = document.createElement('li');
+                    li.textContent = (n.title || '') + ' — ' + (n.message || '');
+                    dd.appendChild(li);
+                });
+            }
+        }
+
+        // main notifications list
+        const container = document.querySelector('.notifications');
+        if (container) {
+            if (!data.notifications || data.notifications.length === 0) {
+                container.innerHTML = `<div class="item"><div class="item-left"><div class="icon blue"><i class="fa-solid fa-bell"></i></div><div class="content"><h3>No notifications yet</h3><p>Any reward updates will appear here.</p></div></div><div class="time">--</div></div>`;
+            } else {
+                let html = '';
+                data.notifications.forEach(n => {
+                    const type = n.type || 'info';
+                    let color = 'blue';
+                    let icon = 'fa-info-circle';
+                    if (type === 'success') { color = 'green'; icon = 'fa-circle-check'; }
+                    if (type === 'warning') { color = 'yellow'; icon = 'fa-circle-exclamation'; }
+                    const pointsLabel = n.points_delta ? ((n.points_delta>0?'+':'')+n.points_delta+' points') : '';
+                    html += `<div class="item"><div class="item-left"><div class="icon ${color}"><i class="fa-solid ${icon}"></i></div><div class="content"><h3>${escapeHtml(n.title||'')}</h3><p>${escapeHtml(n.message||'')}</p>${pointsLabel?`<span class="points">${escapeHtml(pointsLabel)}</span>`:''}</div></div><div class="time">${escapeHtml(n.created_at||'')}</div></div>`;
+                });
+                container.innerHTML = html;
+            }
+        }
+
+    } catch (e) {
+        // fail silently
+    }
+}
+
+function escapeHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+refreshNotifications();
+setInterval(refreshNotifications, 5000);
 
 </script>
 

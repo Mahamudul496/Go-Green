@@ -775,7 +775,7 @@
 
     <div class="container">
 
-        <a href="#" class="back-btn">
+        <a href="dashboard.php" class="back-btn">
             <i class="fa-solid fa-arrow-left"></i>
             Back to Dashboard
         </a>
@@ -803,7 +803,7 @@
                     Total Waste Recycled
                 </div>
 
-                <div class="big">0 kg</div>
+                <div class="big" id="impact-waste">0 kg</div>
 
                 <div class="small-green">
                     +12% this month
@@ -821,7 +821,7 @@
                     Trees Planted
                 </div>
 
-                <div class="big">0</div>
+                <div class="big" id="impact-trees">0</div>
 
                 <div class="small-green">
                     0 trees saved
@@ -839,7 +839,7 @@
                     CO₂ Emission Reduced
                 </div>
 
-                <div class="big">0.0 kg</div>
+                <div class="big" id="impact-co2">0.0 kg</div>
 
                 <div class="small-green">
                     Equivalent to 50 km drive
@@ -857,7 +857,7 @@
                     Environmental Score
                 </div>
 
-                <div class="big">0</div>
+                <div class="big" id="impact-score">0</div>
 
                 <div class="small-green">
                     Excellent contribution!
@@ -1107,6 +1107,28 @@
             }
 
         });
+
+        // Poll dashboard summary and update impact cards
+        async function refreshImpactCards() {
+            try {
+                const res = await fetch('api/dashboard_summary.php');
+                if (!res.ok) return;
+                const data = await res.json();
+
+                // Update impact page cards
+                document.getElementById('impact-waste').textContent = (data.total_waste_kg ?? 0) + ' kg';
+                document.getElementById('impact-trees').textContent = (data.trees_planted ?? 0);
+                document.getElementById('impact-co2').textContent = ((data.co2_reduced_kg ?? 0).toFixed(1)) + ' kg';
+                document.getElementById('impact-score').textContent = (data.points ?? 0);
+            } catch (e) {
+                // fail silently
+            }
+        }
+
+        // initial fetch
+        refreshImpactCards();
+        // poll every 5s
+        setInterval(refreshImpactCards, 5000);
 
     </script>
 
