@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoGreen - Environmental Impact</title>
+
+    <link rel="stylesheet" href="impact.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+</head>
+
+<body>
+
+    <!-- =========================
+     NAVBAR
+========================= -->
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <div class="logo">
+
+                <div class="logo-icon">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+
+                <div>
+                    <h2>GoGreen</h2>
+                    <p>Smart Waste • Green Rewards</p>
+                </div>
+
+            </div>
+
+            <div class="menu">
+
+                <a href="#">Dashboard</a>
+                <a href="#">Submit Waste</a>
+                <a href="#">Rewards</a>
+                <a href="#" class="active">Impact</a>
+                <a href="#">Profile</a>
+
+                <a href="#" class="bell">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="dot"></span>
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- =========================
+     MAIN
+========================= -->
+
+    <div class="container">
+
+        <a href="#" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back to Dashboard
+        </a>
+
+        <h1 class="title">Environmental Impact</h1>
+
+        <p class="subtitle">
+            Your contribution to a sustainable future
+        </p>
+
+        <!-- TOP CARDS -->
+
+        <div class="top-cards">
+
+            <div class="card">
+
+                <div class="icon-box blue">
+                    <i class="fa-solid fa-recycle"></i>
+                </div>
+
+                <div class="card-title">
+                    Total Waste Recycled
+                </div>
+
+                <div class="big">0 kg</div>
+
+                <div class="small-green">
+                    +12% this month
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon-box green">
+                    <i class="fa-solid fa-tree"></i>
+                </div>
+
+                <div class="card-title">
+                    Trees Planted
+                </div>
+
+                <div class="big">0</div>
+
+                <div class="small-green">
+                    0 trees saved
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon-box purple">
+                    <i class="fa-solid fa-cloud"></i>
+                </div>
+
+                <div class="card-title">
+                    CO₂ Emission Reduced
+                </div>
+
+                <div class="big">0.0 kg</div>
+
+                <div class="small-green">
+                    Equivalent to 50 km drive
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="icon-box orange">
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                </div>
+
+                <div class="card-title">
+                    Environmental Score
+                </div>
+
+                <div class="big">0</div>
+
+                <div class="small-green">
+                    Excellent contribution!
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CHARTS -->
+
+        <div class="chart-grid">
+
+            <!-- PIE -->
+
+            <div class="chart-card">
+
+                <div class="chart-title">
+                    Waste Type Distribution
+                </div>
+
+                <div class="pie-wrapper">
+
+                    <div class="pie" id="pieChart">
+
+                        <div class="tooltip" id="tooltip">
+                            Plastic 35%
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="labels">
+
+                    <span style="color:#3b82f6;">Plastic 35%</span>
+
+                    <span style="color:#10b981;">Paper 25%</span>
+
+                    <span style="color:#8b5cf6;">Glass 15%</span>
+
+                    <span style="color:#f59e0b;">Metal 15%</span>
+
+                    <span style="color:#ef4444;">E-waste 10%</span>
+
+                </div>
+
+            </div>
+
+            <!-- GRAPH -->
+
+            <div class="chart-card">
+
+                <div class="chart-title">
+                    Monthly Contribution
+                </div>
+
+                <div class="graph">
+
+                    <div class="grid-line line1"></div>
+                    <div class="grid-line line2"></div>
+                    <div class="grid-line line3"></div>
+                    <div class="grid-line line4"></div>
+
+                    <svg class="graph-svg" viewBox="0 0 500 220">
+
+                        <polyline fill="none" stroke="#10b981" stroke-width="4" points="
+                    20,170
+                    90,150
+                    160,140
+                    230,120
+                    300,100
+                    370,90
+                    440,70" />
+
+                        <polyline fill="none" stroke="#2563eb" stroke-width="4" points="
+                    20,190
+                    90,175
+                    160,165
+                    230,155
+                    300,145
+                    370,130
+                    440,120" />
+
+                    </svg>
+
+                </div>
+
+                <div class="months">
+
+                    <span>Jan</span>
+                    <span>Feb</span>
+                    <span>Mar</span>
+                    <span>Apr</span>
+                    <span>May</span>
+                    <span>Jun</span>
+                    <span>Jul</span>
+
+                </div>
+
+                <div class="legend">
+
+                    <div>
+                        <span class="green-box"></span>
+                        Waste (kg)
+                    </div>
+
+                    <div>
+                        <span class="blue-box"></span>
+                        CO₂ Saved (kg)
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
