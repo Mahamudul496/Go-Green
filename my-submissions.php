@@ -2,6 +2,8 @@
 session_start();
 include 'config.php';
 
+ensureWasteSubmissionsSchema($conn);
+
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
@@ -9,8 +11,18 @@ if (!isset($_SESSION['user_id'])) {
 
 $userId = intval($_SESSION['user_id']);
 
-// Fetch submissions for current user
-$query = "SELECT * FROM waste_submissions WHERE user_id='$userId' ORDER BY submitted_at DESC";
+// Detect whether the current DB has the user_id column on waste_submissions
+$hasUserIdColumn = false;
+$columnCheck = $conn->query("SHOW COLUMNS FROM waste_submissions LIKE 'user_id'");
+if ($columnCheck && $columnCheck->num_rows > 0) {
+    $hasUserIdColumn = true;
+}
+
+if ($hasUserIdColumn) {
+    $query = "SELECT * FROM waste_submissions WHERE user_id='$userId' ORDER BY submitted_at DESC";
+} else {
+    $query = "SELECT * FROM waste_submissions ORDER BY submitted_at DESC";
+}
 $result = $conn->query($query);
 
 // Initialize the counter for numbering
@@ -127,11 +139,12 @@ $count = 1;
                         </div>
 
                         <!-- 4. Status & Points -->
+                        <?php $submissionStatus = $row['status'] ?? 'Pending'; ?>
                         <div style="text-align: right;">
-                            <span class="status-tag"><?php echo htmlspecialchars($row['status'] ?? 'Pending'); ?></span>
-                            <?php if ($row['status'] === 'Approved'): ?>
+                            <span class="status-tag"><?php echo htmlspecialchars($submissionStatus); ?></span>
+                            <?php if ($submissionStatus === 'Approved'): ?>
                                 <p style="margin-top: 10px; font-weight: bold; color: #1b4332;">
-                                    Points Awarded: <?php echo intval($row['points_awarded']); ?>
+                                    Points Awarded: <?php echo intval($row['points_awarded'] ?? 0); ?>
                                 </p>
                             <?php else: ?>
                                 <p style="margin-top: 10px; font-weight: bold; color: #1b4332;">

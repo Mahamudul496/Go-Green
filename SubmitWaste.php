@@ -2,6 +2,8 @@
 session_start();
 include 'config.php';
 
+ensureWasteSubmissionsSchema($conn);
+
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
@@ -30,8 +32,19 @@ if (isset($_POST['submit'])) {
         $target_file = $target_dir . $file_name;
 
         if (move_uploaded_file($_FILES["waste_image"]["tmp_name"], $target_file)) {
-            $stmt = $conn->prepare("INSERT INTO waste_submissions (user_id, waste_type, weight, description, address, pickup_date, time_slot, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("isdsssss", $userId, $waste_type, $weight, $description, $address, $pickup_date, $time_slot, $target_file);
+            $hasUserIdColumn = false;
+            $columnCheck = $conn->query("SHOW COLUMNS FROM waste_submissions LIKE 'user_id'");
+            if ($columnCheck && $columnCheck->num_rows > 0) {
+                $hasUserIdColumn = true;
+            }
+
+            if ($hasUserIdColumn) {
+                $stmt = $conn->prepare("INSERT INTO waste_submissions (user_id, waste_type, weight, description, address, pickup_date, time_slot, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->bind_param("isdsssss", $userId, $waste_type, $weight, $description, $address, $pickup_date, $time_slot, $target_file);
+            } else {
+                $stmt = $conn->prepare("INSERT INTO waste_submissions (waste_type, weight, description, address, pickup_date, time_slot, image_path) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                $stmt->bind_param("sdsssss", $waste_type, $weight, $description, $address, $pickup_date, $time_slot, $target_file);
+            }
 
             if ($stmt->execute()) {
                 echo "<script>alert('Waste submitted successfully! Pending admin approval.'); window.location.href='dashBoard.php';</script>";
