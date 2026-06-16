@@ -444,7 +444,7 @@
 
         <div class="notification" id="notifBtn">
 
-            🔔
+           <a href="notification.php">🔔</a>
 
             <span class="badge"></span>
 
@@ -482,6 +482,9 @@
 
         <p class="subtitle">
             Manage your account settings and preferences
+        </p>
+        <p style="color:#16a34a; margin-top: -10px; margin-bottom: 25px;">
+            New users receive a 25-point bonus on first login, reflected in your Eco-Points total.
         </p>
 
         <!-- PROFILE INFO -->

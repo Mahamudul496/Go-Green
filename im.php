@@ -25,150 +25,94 @@
    NAVBAR
 ========================= */
 
-       /* =========================
-   NAVBAR
-========================= */
+        .navbar {
+            width: 100%;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 14px 0;
+        }
 
-.navbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+        .nav-container {
+            width: 1200px;
+            margin: auto;
 
-    padding:15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    background:white;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-    border-bottom:1px solid #ddd;
-}
+        /* 🔥 WHITE LOGO */
 
-.logo{
-    font-weight:bold;
-    font-size:20px;
-}
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
 
-/* NAV RIGHT */
+            background: white;
 
-.nav-right{
-    display:flex;
-    align-items:center;
-    gap:20px;
-}
+            border: 2px solid #16a34a;
 
-/* NAV LINKS */
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-.nav-right a{
-    position:relative;
+            color: #16a34a;
+            font-size: 18px;
+        }
 
-    text-decoration:none;
+        .logo h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
 
-    color:#555;
+        .logo p {
+            font-size: 12px;
+            color: #6b7280;
+        }
 
-    font-weight:500;
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
 
-    transition:all 0.3s ease;
-}
+        .menu a {
+            text-decoration: none;
+            color: #4b5563;
+            font-size: 14px;
+            font-weight: 600;
+            transition: .3s;
+        }
 
-/* HOVER */
+        .menu a:hover {
+            color: #16a34a;
+        }
 
-.nav-right a:hover{
-    color:#16a34a;
-}
+        .menu .active {
+            color: #16a34a;
+        }
 
-/* ACTIVE */
+        .bell {
+            position: relative;
+        }
 
-.nav-right a.active{
-    color:#16a34a;
-}
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: red;
 
-/* UNDERLINE */
-
-.nav-right a::after{
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    bottom:-5px;
-
-    width:0%;
-    height:2px;
-
-    background:#16a34a;
-
-    transition:0.3s ease;
-}
-
-.nav-right a:hover::after{
-    width:100%;
-}
-
-.nav-right a.active::after{
-    width:100%;
-}
-
-/* NOTIFICATION */
-
-.notification{
-    position:relative;
-    cursor:pointer;
-    font-size:20px;
-}
-
-/* RED DOT */
-
-.badge{
-    position:absolute;
-
-    top:0;
-    right:0;
-
-    width:8px;
-    height:8px;
-
-    background:red;
-
-    border-radius:50%;
-}
-
-/* DROPDOWN */
-
-.dropdown{
-    position:absolute;
-
-    top:30px;
-    right:0;
-
-    width:220px;
-
-    background:white;
-
-    border-radius:10px;
-
-    box-shadow:0 10px 20px rgba(0,0,0,0.15);
-
-    padding:10px;
-
-    display:none;
-
-    z-index:100;
-}
-
-.dropdown ul{
-    list-style:none;
-    padding:0;
-    margin:10px 0 0;
-}
-
-.dropdown li{
-    padding:8px;
-    border-radius:6px;
-    font-size:14px;
-    transition:0.3s;
-}
-
-.dropdown li:hover{
-    background:#f3f4f6;
-}
+            position: absolute;
+            top: -2px;
+            right: -2px;
+        }
 
         /* =========================
    CONTAINER
@@ -713,61 +657,64 @@
 ========================= -->
 
     <!-- Navbar -->
-    <header class="navbar">
+    <nav class="navbar">
 
-    <div class="logo">
-        🌱 GoGreen
-    </div>
+        <div class="left">
 
-    <nav class="nav-right">
+            <div class="logo-box">🌱</div>
 
-        <a href="dashboard.php">
-            Dashboard
-        </a>
-
-        <a href="SubmitWaste.php">
-            Submit Waste
-        </a>
-
-        <a href="reward.php">
-            Rewards
-        </a>
-
-        <a href="impactt.php" class="active">
-            Impact
-        </a>
-
-        <a href="profile.php">
-            Profile
-        </a>
-
-        <div class="notification">
-
-            <a href="notification.php">🔔</a>
-
-            <span class="badge"></span>
-
-            <div class="dropdown" id="notifBox">
-
-                <p><strong>Notifications</strong></p>
-
-                <ul>
-                    <li>♻️ Waste pickup scheduled</li>
-                    <li>🎉 You earned 50 points</li>
-                    <li>🚚 Driver assigned</li>
-                </ul>
-
+            <div>
+                <div class="logo-text">GoGreen</div>
+                <small>Smart Waste • Green Rewards</small>
             </div>
 
         </div>
 
-        <a href="login.php">
-            Logout
-        </a>
+        <ul class="menu">
+
+            <li>
+                <a href="dashBoard.php">Dashboard</a>
+            </li>
+
+            <li>
+                <a href="SubmitWaste.php" class="nav-link">
+                    Submit Waste
+                </a>
+            </li>
+
+            <li>
+                <a href="reward.php" class="nav-link">
+                    Rewards
+                </a>
+            </li>
+
+            <li>
+                <a href="impactt.php" class="nav-link active">
+                    Impact
+
+                </a>
+            </li>
+
+            <li>
+                <a href="profile.php" class="nav-link">
+                    Profile
+                </a>
+            </li>
+
+            <li class="icon-item">
+                <a href="notification.php">🔔</a>
+                <span class="dot"></span>
+            </li>
+
+            <li>
+                <a href="login.php" class="nav-link">
+                    Logout
+                </a>
+            </li>
+
+        </ul>
 
     </nav>
-
-</header>
 
     <!-- =========================
      MAIN
@@ -784,9 +731,6 @@
 
         <p class="subtitle">
             Your contribution to a sustainable future
-        </p>
-        <p style="color:#16a34a; margin-top: 0; margin-bottom: 25px;">
-            New users receive a 25-point bonus on first login.
         </p>
 
         <!-- TOP CARDS -->
@@ -1068,6 +1012,16 @@
     </div>
 
     <script>
+
+        document.querySelectorAll(".menu a").forEach(link => {
+
+            link.addEventListener("click", function (e) {
+
+                e.preventDefault();
+
+            });
+
+        });
 
         const pie = document.querySelector(".pie");
         const tooltip = document.getElementById("tooltip");

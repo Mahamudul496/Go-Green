@@ -92,6 +92,9 @@ $count = 1;
     <div class="container">
         <h1>My Waste Submissions</h1>
         <p class="subtitle">Track the status of your recycling requests and earned points.</p>
+        <p style="color:#16a34a; margin-top: 0; margin-bottom: 20px;">
+            New users receive a 25-point bonus on first login.
+        </p>
 
         <div class="list-container">
             <?php if ($result->num_rows > 0): ?>
