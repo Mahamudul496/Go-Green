@@ -29,9 +29,9 @@ session_start();
             </li>
             <li><a href="reward.php">Rewards</a></li>
             <li><a href="impactt.php">Impact</a></li>
-            <li>Profile</li>
+            <li><a href="profile.php">Profile</a></li>
 
-            <li class="icon-item">🔔 <span class="dot"></span></li>
+            <li class="icon-item"><a href="notification.php">🔔</a></li>
 
             <li>
                 <a href="login.php" class="nav-link">Logout</a>
@@ -47,7 +47,7 @@ session_start();
 
             <div class="dashboard-title-right">
                 <h2>GoGreen | User Dashboard</h2>
-                <p class="sub">Welcome back, Midul! Track your environmental impact and earn rewards</p>
+                <p class="sub">Welcome back, Midul! Track your environmental impact and earn rewards — new users get a 25-point bonus on first login.</p>
             </div>
             <div class="points">
                 🌟 <?php echo isset($_SESSION['points']) ? $_SESSION['points'] : 0; ?>

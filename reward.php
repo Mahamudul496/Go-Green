@@ -1,4 +1,5 @@
 
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,10 +27,10 @@
         <a href="dashBoard.php" class="nav-link">Dashboard</a>
         <a href="SubmitWaste.php" class="nav-link">Submit Waste</a>
         <a href="reward.php" class="active">Rewards</a>
-        <a href="#">Impact</a>
-        <a href="#">Profile</a>
+        <a href="impactt.php">Impact</a>
+        <a href="profile.php">Profile</a>
 
-        <div class="notification">🔔 <span></span></div>
+        <div class="notification"><a href="notification.php">🔔</a> <span></span></div>
 
         <a href="login.php">Logout</a>
     </div>
@@ -47,7 +48,7 @@
 
         <div class="points">
             Available Points <br>
-            <b>0</b>
+            <b><?php echo isset($_SESSION['points']) ? $_SESSION['points'] : 0; ?></b>
         </div>
     </div>
 
@@ -111,6 +112,9 @@
 
         <p style="margin-top:20px; text-align:center; color:#555;">
             Points are awarded after admin verification. Higher points mean greater environmental impact!
+        </p>
+        <p style="margin-top:10px; text-align:center; color:#16a34a; font-weight:600;">
+            New users also receive a 25-point bonus on first login.
         </p>
     </div>
 

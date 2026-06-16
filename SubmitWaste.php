@@ -59,12 +59,12 @@ if (isset($_POST['submit'])) {
         <nav class="nav-right">
             <a href="dashBoard.php">Dashboard</a>
             <a href="#" class="active">Submit Waste</a>
-            <a href="#">Rewards</a>
-            <a href="#">Impact</a>
-            <a href="#">Profile</a>
+            <a href="reward.php">Rewards</a>
+            <a href="impactt.php">Impact</a>
+            <a href="profile.php">Profile</a>
 
             <div class="notification">
-                🔔
+                <a href="notification.php">🔔</a>
                 <span class="badge"></span>
                 <div class="dropdown" id="notifBox">
                     <p><strong>Notifications</strong></p>
@@ -87,7 +87,7 @@ if (isset($_POST['submit'])) {
         <!-- ECO POINT BOX -->
         <div class="eco-box">
             <h3>📈 Eco-Points Calculator</h3>
-            <p>Earn eco-points based on waste type and weight. Points are awarded after admin verification.</p>
+            <p>Earn eco-points based on waste type and weight. Points are awarded after admin verification, and new users receive a 25-point login bonus.</p>
 
             <div class="points-grid">
                 <div>Plastic<br><span>15 pts/kg</span></div>
